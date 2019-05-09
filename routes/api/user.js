@@ -3,8 +3,8 @@ const userController = require("../../controllers/user")
 
 const route = express.Router();
 
-route.post("/register", userController.postAddUser);
-route.get("/register", userController.getAllUser);
+route.post("/reg", userController.postAddUser);
+route.get("/all", userController.getAllUser);
 
 
-module.exports = route;
+module.exports = route; 

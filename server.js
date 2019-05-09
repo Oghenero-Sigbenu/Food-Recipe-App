@@ -1,33 +1,38 @@
 require("dotenv").config();  // allows our project read variables from .env files
 
 const express = require("express");
-const sequelize = require("./config/database")
+const sequelize = require("./config/database");
+const path = require("path");
+
 // Enables Cross Origin Resource Sharing for our Project
 const cors = require("cors");
 
 //importing different routes
 const userRoutes = require("./routes/api/user");
+const recipeRoutes = require("./routes/api/recipe");
+const authRoutes = require("./routes/api/auth");
+
+//models
+const User = require("./models/user");
+const Recipes = require("./models/recipe");
 
 const app = express();
 
-app.use("api/user", userRoutes)
+// This parses all json request so we can access
+// its contents via 'req.body' object
+app.use(express.json());
+app.use(cors());
 
+// Create a static directory for our uploads
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-
-
-
-app.use("/", (req, res, next) => {
-    
-})
-
-
-
-
-
+//setting a base path
+app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/recipe", recipeRoutes);
+app.use("/api/v1/auth", authRoutes);
 
 
 const PORT = process.env.PORT || 5000
-
 
 sequelize.sync()
     .then(result => {

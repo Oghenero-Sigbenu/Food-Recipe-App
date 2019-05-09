@@ -1,4 +1,4 @@
-# ignore node_modules folder
+git # ignore node_modules folder
 node_modules/
 
 # Ignore file named '.env'

@@ -1,0 +1,9 @@
+
+.recipe-cards {
+    width: 215px;
+    height: 380px;
+    border-radius: 12px;
+    margin: 6px;
+    box-shadow: 0px 0px 10px grey;
+    background-color: white;
+}

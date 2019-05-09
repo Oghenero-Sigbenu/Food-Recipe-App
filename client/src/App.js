@@ -1,28 +1,66 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Route, Switch } from "react-router-dom";
+// import { Container } from "reactstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
+import NavbarApp from './components/NavbarApp/NavbarApp'
+import {Home, Auth, Recipes, CreateRecipe} from "./pages/Index/Index"
+import { connect } from "react-redux";
+import { authAutoLogin, loadAuthUser } from "./store/action/auth"
 
-class App extends Component {
+
+
+
+export class App extends Component {
+
+  componentDidMount = () => {
+    this.props.onAutoLogin();
+    if(this.props.isAuth) {
+      this.props.onLoadAuthUser();
+    }
+  }
   render() {
+    let routes = (
+      <Switch>
+        <Route path="/auth" component={Auth} />
+        <Route path="/recipes" component={Recipes} />
+        {/* <Route path="/recipe/:id" component={RecipeDetail} /> */}
+        <Route path="/" exact component={Home} />
+        <Route render={() => <h2>Not Found</h2>} />
+      </Switch>
+    );
+    if (this.props.isAuth){
+      routes =(
+    <Switch>
+        <Route path="/auth" component={Auth} />
+        <Route path="/add" component={CreateRecipe} /> 
+        <Route path="/recipe" component={Recipes} />
+        {/* <Route path="/detail/:id" component={RecipeDetail} /> */}
+        <Route path="/" exact component={Home} />
+        <Route render={() => <h2>Not Found</h2>} />
+    </Switch>
+       );
+       }
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+          <NavbarApp isAuth={this.props.isAuth} user={this.props.user}/>
+          {routes}
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  isAuth: state.auth.token !== null,
+  user: state.auth.user
+
+});
+
+const mapDispatchToProps = dispatch => ({
+  onAutoLogin: () => dispatch(authAutoLogin()),
+  onLoadAuthUser: () => dispatch(loadAuthUser())
+});
+
+export default connect(
+      mapStateToProps,
+      mapDispatchToProps)(App);
