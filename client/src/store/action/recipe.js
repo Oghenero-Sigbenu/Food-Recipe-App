@@ -7,16 +7,18 @@ export const loading = () => {
 	    };
         };
 
-export const getRecipeSuccess = () => {
+export const getRecipeSuccess = (recipes) => {
     return {
-        type: types.GET_RECIPES_SUCCESS
+        type: types.GET_RECIPES_SUCCESS,
+        recipes
         }
         };
 
 
-export const addRecipeSuccess = () => {
+export const addRecipeSuccess = (recipes) => {
     return {
-        tpes: types.ADD_RECIPE_SUCCESS
+        type: types.ADD_RECIPE_SUCCESS,
+        recipes
         }
         }
 export const errorOccured = () => {
@@ -53,10 +55,13 @@ export const getRecipe = () => {
 export const addRecipe = recipeData => {
     return (dispatch, getState) => {
         dispatch(loading());
+        const token = getState().auth.token;
 
         let formData;
         const config = { headers: {}};
-
+    
+    if(token){
+        config.headers["x-access-token"] = token;
         config.headers["Content-Type"] = "multipart/form-data";
         formData = new FormData();
         formData.append("title", recipeData.title);
@@ -64,18 +69,17 @@ export const addRecipe = recipeData => {
         formData.append("steps", recipeData.steps);
         formData.append("ingredients", recipeData.ingredients);
         formData.append("imageurl", recipeData.imageurl);
-               
-        axios
-        .post("recipe/post", formData, config)
-            .then(res =>{
+    }      
+        axios.post("recipe/post", formData, config)
+            .then(res => {
                 return dispatch(addRecipeSuccess(res.data))
-                    })
-                    .then(() => {
-                        dispatch(addRecipeStart());
-                    })
-                    .catch(err => dispatch(errorOccured(err)))
-                        }
+            })
+            .then(() => {
+                dispatch(addRecipeStart());
+            })
+            .catch(err => dispatch(errorOccured(err)))
                 }
+    }
 
 
 

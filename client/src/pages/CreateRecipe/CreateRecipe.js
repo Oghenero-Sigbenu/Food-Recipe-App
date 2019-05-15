@@ -106,7 +106,8 @@ const selectStyle = {width: "100%"}
                     <FormGroup>
                         <label for="imageurl"><h3>Image Upload</h3></label>
                         <input type="file"
-                                 name="imageurl" 
+                                 name="imageurl"
+                                //  id = "imageurl"
                                  style={inputStyle} 
                                  accept=".jpg, .jpeg, .png"
                                 onChange={this.onImgChanged} />

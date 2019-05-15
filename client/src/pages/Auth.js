@@ -30,7 +30,7 @@ import {
     email: "",
     password: "",
     password2: "",
-    image: "",
+    imageurl: "",
     passwordMatched: false
   };
 
@@ -47,6 +47,7 @@ import {
   };
   
    submitForm = e => {
+     console.log("nake")
     e.preventDefault();
     let formData;
     if (this.props.isLogin) {
@@ -62,16 +63,15 @@ import {
         username: this.state.username,
         email: this.state.email,
         password: this.state.password,
-        image: this.state.image
+        imageurl: this.state.imageurl
       };
       this.props.onAuth(formData);
+      console.log(formData)
     }
   };
 
    render() {
-    const { 
-        // isLoading, 
-        isLogin, isAuth, error } = this.props;
+    const { isLogin, isAuth, error } = this.props;
     return (
       <Container>
         {isAuth && <Redirect to="/" />}
@@ -82,7 +82,7 @@ import {
               {!isLogin ? "Create an Account": "Login"}
               </CardHeader>
               <CardBody>
-                {error && <Alert color="danger">{this.props.error.msg}</Alert>}
+                {error && <Alert color="danger">"yes"{this.props.error.msg}</Alert>}
                 <Form onSubmit={this.submitForm} action="POST" encType={
 										!isLogin
 											? "multipart/form-data"
@@ -169,7 +169,7 @@ import {
                       <FormFeedback>Password doesnt match</FormFeedback>
                     </FormGroup>
                   )}
-                  <Button color="primary">Login</Button>
+                  <Button color="primary" >Login</Button>
                 </Form>
               </CardBody>
               <CardFooter>

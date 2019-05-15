@@ -19,6 +19,8 @@ export const authStart = () => ({
  });
 
  export const auth = authData => (dispatch, getState) => {
+  console.log("register")
+
     dispatch(authStart());
     const isLogin = getState().auth.isLogin;
     let endPoint = null;
@@ -27,7 +29,7 @@ export const authStart = () => ({
         headers: {}
     };
 
-    //if not login 
+    //if not loggedIn register
     if(!isLogin) {
         config.headers["Content-type"] = "multipart/form-data";
         endPoint ="user";
@@ -42,20 +44,21 @@ export const authStart = () => ({
     }
     else{
         config.headers["Content-Type"] = "application/json";
-		endPoint = "/auth";
+		endPoint = "auth";
 		formData = authData;
     }
 
-    axios.post(endPoint +"/login"  , formData,config)
+    axios.post("/" + endPoint, formData,config)
         .then(res => {
-            const {token, user} = res.data;
+            const {token, user} = res.data; 
+            console.log(res.data)
             const userId = user.id;
             localStorage.setItem("token", token);
             localStorage.setItem("userId", userId);
             dispatch(authSuccess(token, userId, user))
 
          })
-         .catch(err => dispatch(authFailed(err.response.data)));
+         .catch(err => dispatch(authFailed(err)));
         
  }
 
@@ -99,9 +102,9 @@ export const loadAuthUser = () => (dispatch, getState) => {
 		config.headers["x-access-token"] = token;
 	}
 	axios
-		.get("/auth/user", config)
+		.get("/auth/all", config)
 		.then(res => {
-			// console.log(res.data);
+			console.log(res.data);
 			dispatch(loadAuthUserSuccess(res.data));
 		})
 		.catch(error =>

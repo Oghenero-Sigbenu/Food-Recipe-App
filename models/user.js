@@ -24,10 +24,10 @@ User.init({
             type: Sequelize.STRING,
             allowNull: false
         },
-        imageUrl:{
+        imageurl:{
             type: Sequelize.STRING,
             allowNull: true
         },
     },{sequelize});
 
-    module.exports = User;
+module.exports = User;

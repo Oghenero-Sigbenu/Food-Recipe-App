@@ -6,7 +6,11 @@ import {
 	NavbarToggler,
 	NavbarBrand,
 	Nav,
-	NavItem
+	NavItem,
+	UncontrolledDropdown,
+	DropdownToggle,
+	DropdownItem,
+	DropdownMenu
 	// NavLink as BstNavLink,
 } from "reactstrap";
 
@@ -49,10 +53,21 @@ class AppNavbar extends Component {
 								    </NavItem>
 							         )} 
 							        {/* <NavItem> */}
-								    {this.props.isAuth ? (
-									<NavLink to="/logout" className="nav-link">
-										Logout
-									</NavLink>
+									{this.props.isAuth ? (
+                  <UncontrolledDropdown nav inNavbar>
+                    <DropdownToggle nav caret>
+                      {this.props.user && this.props.user.username}
+                    </DropdownToggle>
+                    <DropdownMenu right>
+                      <DropdownItem>
+                        <NavLink to="/edit-profile">Edit Profile</NavLink>
+                      </DropdownItem>
+                      <DropdownItem divider />
+                      <DropdownItem>
+                        <NavLink to="/logout">Logout</NavLink>
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </UncontrolledDropdown>
 								) : (
 									<NavLink to="/auth" className="nav-link">
 										Login

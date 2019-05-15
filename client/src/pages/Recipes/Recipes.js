@@ -8,7 +8,8 @@ import { getRecipe } from "../../store/action/recipe";
 import "./Recipes.css"
 class Recipes extends Component {
 	componentDidMount() {
-		this.props.onGetRecipe();
+        this.props.onGetRecipe();
+        console.log(this.props.onGetRecipe())
 	}
             render() { 
                 const divStyle = {display: "flex",height:"600px", width: "100%",
@@ -18,7 +19,7 @@ class Recipes extends Component {
                                      <h2>Recipes List</h2>
                                     {/* {this.props.isLoading ? (
                                         <Spinner /> ) : (  */}
-                                        <RecipeCards recipes={this.props.recipes}  />
+                                        <RecipeCards recipes={this.props.recipes} isAuth={this.props.isAuth} user={this.props.user}  />
                                         {/* )} */}
                                      
                                     </div>
@@ -30,7 +31,9 @@ class Recipes extends Component {
 
 const mapStateToProps = state => ({
     recipes: state.recipe.recipes,
-    isLoading: state.recipe.isLoading
+    isLoading: state.recipe.isLoading,
+    isAuth: state.auth.token !== null,
+    user : state.auth.user
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -7,7 +7,7 @@ import NavbarApp from './components/NavbarApp/NavbarApp'
 import {Home, Auth, Recipes, CreateRecipe} from "./pages/Index/Index"
 import { connect } from "react-redux";
 import { authAutoLogin, loadAuthUser } from "./store/action/auth"
-
+import Logout from "./components/Logout"
 
 
 
@@ -23,7 +23,7 @@ export class App extends Component {
     let routes = (
       <Switch>
         <Route path="/auth" component={Auth} />
-        <Route path="/recipes" component={Recipes} />
+        <Route path="/recipe" component={Recipes} />
         {/* <Route path="/recipe/:id" component={RecipeDetail} /> */}
         <Route path="/" exact component={Home} />
         <Route render={() => <h2>Not Found</h2>} />
@@ -32,6 +32,7 @@ export class App extends Component {
     if (this.props.isAuth){
       routes =(
     <Switch>
+        <Route path="/logout" component={Logout} />
         <Route path="/auth" component={Auth} />
         <Route path="/add" component={CreateRecipe} /> 
         <Route path="/recipe" component={Recipes} />

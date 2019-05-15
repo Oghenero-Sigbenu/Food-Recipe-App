@@ -12,7 +12,7 @@ const reducer = (state = initialState, action) => {
         case types.GET_RECIPES_SUCCESS:
             return {
                 ...state,
-                recipe: action.recipe,
+                recipes: action.recipes,
                 isloading: false
                      }
         case types.ADD_RECIPE_SUCCESS:

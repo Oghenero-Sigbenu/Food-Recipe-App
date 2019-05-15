@@ -6,13 +6,15 @@ const User = require("../models/user"); //importing the models
 //user signUp and login
 exports.postAddUser = (req, res, next) => {
     const { firstname, lastname, email,
-        username, password, imageUrl } = req.body;
+        username, password, imageurl } = req.body;
     console.log("love");
     // if either of the fields are empty render status(404)
     // else find a user by the email
     if (!firstname || !lastname || !email || !username || !password) {
         res.status(400).json("All fields are required")
-    } else {
+    } else {if(req.file){
+		imageurl = req.file.path;
+    }
         //serch if the email already exist
         User.findOne({
             where: {
@@ -22,7 +24,7 @@ exports.postAddUser = (req, res, next) => {
         
         .then(user => {
             if (user) {
-                return res.status(400).json({ msg: "User already exists" });
+                return res.status(400).json({ msg: error.message|| "User already exists" });
             } 
             else {
                 //pasword is hashed
@@ -36,7 +38,7 @@ exports.postAddUser = (req, res, next) => {
                 //user is created
                 User.create({
                     firstname, lastname, email,
-                    username, password: hashedPassword, imageUrl
+                    username, password: hashedPassword, imageurl
                 })
 
             .then(user => {
@@ -55,10 +57,10 @@ exports.postAddUser = (req, res, next) => {
                     user: authenticatedUser
                     });  
                     })
-            .catch(err => res.json({ msg: err.message || "failed to create account" }))
+            .catch(err => res.json({ msg:  "failed to create account" }))
                 }
             })
-            .catch(err => res.json({ msg: err.message || "failed to create account" }))
+            .catch(err => res.json({ msg:  "failed to create account" }))
     }
 };
 

@@ -8,21 +8,24 @@ import {
 } from "reactstrap";
 
 import "./RecipeCards.css"
-const RecipeCards = ({recipes}) => {
-	console.log({recipes})
+const RecipeCards = ({recipes, isAuth, user}) => {
+	console.log({recipes, isAuth, user})
 	
 	// const divStyle = {display: "flex", width: "100%", background_color: "danger"}
-	return (
-		
-        	
-					 <> 
-					 
-					
-				        {recipes.map(recipe => (
-							<h2>{recipe.title}</h2>
-						))}
-					
-					</>
+return (
+		<div className="all-recipes"> 
+			{recipes.map(recipe => (
+			<div className="recipe-cards" key={recipe.id}>
+			<img src={`http://localhost:5000/api/v1${recipe.imageurl}`}  alt="recipe image" className="card-image"></img>
+			<div className="details">
+			<h2>{recipe.title}</h2>
+			<h5>{recipe.description}</h5>
+			 {/* <h6>By: {recipe.user.firstname}</h6> */}
+			</div>
+			</div>
+			))}
+	
+		</div>
 			
 				
 			)};

@@ -12,28 +12,33 @@ exports.getAllRecipes = (req, res, next) => {
 
 
 exports.postAddRecipe = (req, res, next) => {
-    const { title, description, steps,
-        ingredients, imageurl } = req.body;
+
+    console.log('i dey here')
+
+    const { title, description, steps, ingredients } = req.body;
     
     const userId = req.id;
-    let imageUrl;
+    let imageurl;
+
     //error message pops up when fields are empty
-    if (!title || !description || !steps || !ingredients || !imageurl) {
-        res.status(400).json({ msg: "All fields are required" })
-    } else{if(req.file){
-		imageUrl = req.file.path;
-    }
-    User.findByPk(userId)
-        .then(user => {
-    Recipes.create({title, description, steps,ingredients, imageurl })
-        .then(recipe => {
-            res.json(recipe)
+    if (!title || !description || !steps || !ingredients) {
+        res.json({ msg: "All fields are required" })
+    } 
+    else {
+        if(req.file){
+		    imageurl = req.file.path;
+        }
+
+        User.findByPk(userId)
+            .then(user => {
+                Recipes.create({ title, description, steps, ingredients, imageurl })
+            .then(recipe => {
+                res.json(recipe)
+            })
+            .catch(err => res.json({ msg: err.message ||"failed to create" }))
         })
         .catch(err => res.json({ msg: err.message ||"failed to create" }))
-    })
-    .catch(err => res.json({ msg: err.message ||"failed to create" }))
-    }
+    
+   }
+
 }
-
-
-

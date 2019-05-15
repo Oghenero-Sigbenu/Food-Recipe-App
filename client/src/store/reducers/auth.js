@@ -6,7 +6,7 @@ const initialState ={
     user: null,
     isLoading : false,
     error: null,
-    isLoading: true
+    isLogin: true
 };
 
 const reducer = (state = initialState, action) => {
@@ -21,9 +21,10 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 token: action.token,
-                userId: action.user,
+                user: action.user,
+                userId: action.userId,
                 isLoading: false,
-                isLoading: true,
+                isLogin: true,
                 error: null
             };
         case types.AUTH_FAILED:

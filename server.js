@@ -39,4 +39,4 @@ sequelize.sync()
         //create a server and listens
         app.listen(PORT, () =>  console.log("Server is running on PORT 5000"))
     })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err || "failed to connect"));
