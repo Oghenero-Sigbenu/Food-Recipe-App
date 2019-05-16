@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 import NavbarApp from './components/NavbarApp/NavbarApp'
-import {Home, Auth, Recipes, CreateRecipe} from "./pages/Index/Index"
+import {Home, Auth, Recipes, CreateRecipe, RecipeDetail} from "./pages/Index"
 import { connect } from "react-redux";
 import { authAutoLogin, loadAuthUser } from "./store/action/auth"
 import Logout from "./components/Logout"
@@ -24,7 +24,7 @@ export class App extends Component {
       <Switch>
         <Route path="/auth" component={Auth} />
         <Route path="/recipe" component={Recipes} />
-        {/* <Route path="/recipe/:id" component={RecipeDetail} /> */}
+        {/* <Route path="/detail/:id" component={RecipeDetail} /> */}
         <Route path="/" exact component={Home} />
         <Route render={() => <h2>Not Found</h2>} />
       </Switch>
@@ -36,7 +36,7 @@ export class App extends Component {
         <Route path="/auth" component={Auth} />
         <Route path="/add" component={CreateRecipe} /> 
         <Route path="/recipe" component={Recipes} />
-        {/* <Route path="/detail/:id" component={RecipeDetail} /> */}
+        <Route path="/detail/:id" component={RecipeDetail} />
         <Route path="/" exact component={Home} />
         <Route render={() => <h2>Not Found</h2>} />
     </Switch>

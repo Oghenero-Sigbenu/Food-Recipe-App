@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 // import { Spinner } from "reactstrap";
 
-// import banner from "../banner.png";
-// import "../style.css";
 
-// import Sidebar from "../components/Sidebar/Sidebar";
+import banner from "../files/foody3.jpg";
+import Sidebar from "../components/SideBar/SideBar";
 // import RecipeCard from "../components/RecipeCard/RecipeCard";
-// import Footer from "../components/Footer/Footer";
- import { getRecipe } from "../../store/action/recipe";
+import Footer from "../components/Footer/Footer";
+ import { getRecipe } from "../store/action/recipe";
+ import RecipeCards from "../components/RecipeCards/RecipeCards"
+ import "../style.css"
 
 class Home extends Component {
     componentDidMount() {
@@ -17,14 +18,28 @@ class Home extends Component {
     render() {
         return (
             <>
-                <section className="banner">
+                <div className="banner">
                     <div className="banner-text">
-                        <h2>Order food the easy way</h2>
+                        <h2>Share Your Favourite Recipe With Us</h2>
                         <p>Choose your favourite meals now</p>
                         <button>Explore All</button>
                     </div>
-                    {/* <img src={banner} className="banner-img" alt="foody banner" /> */}
-                </section>
+                    <div className="banner-image">
+                        <img src={banner}  alt="foody banner" />
+                    </div>
+                </div>
+                <div class="menu"></div>
+                <div className="main-section"> 
+                <div className="side-bar">
+                      <Sidebar/>
+               </div>
+                <div className="recipes">
+                <RecipeCards recipes={this.props.recipes} isAuth={this.props.isAuth} user={this.props.userId}  />
+                </div> 
+                </div>
+                <div>
+                <Footer/>
+                </div>
                 {/* <section className="phase1">
                     <Sidebar />
                     <div className="recipe">

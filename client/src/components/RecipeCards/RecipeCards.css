@@ -9,9 +9,10 @@
 }
 .recipe-cards {
     width: 300px;
-    height: 300px;
+    height: 350px;
     border-radius: 12px;
     margin: 6px;
+    margin-bottom: 15px;
     box-shadow: 0px 0px 10px grey;
     background-color: white;
     display: flex;
@@ -19,10 +20,20 @@
 }
 
 .details{
-   height: 40%;
+   height: 35%;
+   margin-top: 4px;
+   margin-left: 10px;
+   text-align: left;
     
 }
 .card-image{
     height: 60%;
+    object-fit: cover;
     background-color: rgb(138, 9, 73);
+}
+.recipe-actions{
+    height: 15%;
+    border-top: 1px whitesmoke solid; ;
+    width: 100%;
+
 }

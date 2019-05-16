@@ -30,7 +30,7 @@ exports.login = (req, res, next) => {
             if(!match) {
                 return res.status(400).json({ msg: err.message || "Invalid Password" });
             }
-        //login athe user if it matches
+        //login the user if it matches the password then assign a token
         jwt.sign({userId: user.id}, process.env.AUTH_SECRET_KEY, {expiresIn:"2h"}, (err, token) => {
            res.json({token, user})
         })

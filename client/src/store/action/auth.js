@@ -39,7 +39,7 @@ export const authStart = () => ({
         formData.append("username", authData.username);
         formData.append("email", authData.email);
         formData.append("password", authData.password);
-        formData.append("imageUrl", authData.imageUrl);
+        formData.append("imageurl", authData.imageurl);
 
     }
     else{

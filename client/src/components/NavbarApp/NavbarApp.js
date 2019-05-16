@@ -13,6 +13,7 @@ import {
 	DropdownMenu
 	// NavLink as BstNavLink,
 } from "reactstrap";
+import "./NavbarApp.css"
 
 class AppNavbar extends Component {
 	state = {
@@ -28,7 +29,7 @@ class AppNavbar extends Component {
     render() {
 		return (
 			<div>
-				<Navbar color="primary" dark expand="md" className="mb-5">
+				<Navbar expand="md" className="mb-5 nav">
 					<NavbarBrand tag={NavLink} to="/">
 						Food Recipe App
 					</NavbarBrand>

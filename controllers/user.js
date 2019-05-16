@@ -6,7 +6,7 @@ const User = require("../models/user"); //importing the models
 //user signUp and login
 exports.postAddUser = (req, res, next) => {
     const { firstname, lastname, email,
-        username, password, imageurl } = req.body;
+        username, password} = req.body;
     console.log("love");
     // if either of the fields are empty render status(404)
     // else find a user by the email

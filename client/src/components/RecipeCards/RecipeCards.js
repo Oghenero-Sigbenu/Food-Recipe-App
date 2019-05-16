@@ -1,11 +1,12 @@
 
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Redirect } from "react-router-dom";
-import {
-	Col,
-	Row,
-} from "reactstrap";
+// import {
+// 	Col,
+// 	Row,
+// } from "reactstrap";
+import striptags from 'striptags';
+
 
 import "./RecipeCards.css"
 const RecipeCards = ({recipes, isAuth, user}) => {
@@ -16,12 +17,26 @@ return (
 		<div className="all-recipes"> 
 			{recipes.map(recipe => (
 			<div className="recipe-cards" key={recipe.id}>
-			<img src={`http://localhost:5000/api/v1${recipe.imageurl}`}  alt="recipe image" className="card-image"></img>
+			<img src={`http://localhost:5000/${recipe.imageurl}`}  alt="food" className="card-image"></img>
 			<div className="details">
-			<h2>{recipe.title}</h2>
-			<h5>{recipe.description}</h5>
+			<h4>{recipe.title}</h4>
+			 <div className="recipe-description">
+			{/* <p>{recipe.description}</p> */}
+			 {striptags(recipe.description).slice(0, 25) + "..."} 
+			 	<NavLink to={`detail/` + recipe.id}>Read More</NavLink></div>
 			 {/* <h6>By: {recipe.user.firstname}</h6> */}
 			</div>
+			{isAuth ?
+				<>
+					<div className="recipe-actions">
+						{/* <i class="far fa-bookmark"></i>  */}
+						<i className="fas fa-bookmark"></i>
+						<i className="far fa-heart">12</i>
+						<i className="far fa-comment-alt">123</i>
+					</div>
+				</>
+				: ""
+			}
 			</div>
 			))}
 	

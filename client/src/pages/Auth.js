@@ -42,7 +42,7 @@ import {
 
   onImgChanged = e => {
 		this.setState({
-			image: e.target.files[0]
+			imageurl: e.target.files[0]
 		});
   };
   
@@ -114,7 +114,7 @@ import {
                     <Label for="profilePic">Profile Picture</Label>
                     <Input
                         type="file"
-                        name="imageUrl"
+                        name="imageurl"
                         id="profilePic"
                         accept=".jpg, .jpeg, .png"
                         onChange={this.onImgChanged}

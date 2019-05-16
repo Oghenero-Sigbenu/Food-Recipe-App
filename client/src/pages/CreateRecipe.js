@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {addRecipe, addRecipeStart} from "../../store/action/recipe";
+import {addRecipe, addRecipeStart} from "../store/action/recipe";
 import {connect} from "react-redux";
 import { Redirect } from "react-router-dom";
 import {
@@ -7,7 +7,6 @@ import {
     Row,
     Container,
     Form,
-    Card,
     FormGroup,
     Input,
     Label
@@ -45,8 +44,8 @@ class CreateRecipe extends Component {
                         steps: this.state.steps,
                         imageurl: this.state.imageurl
                         }
-                        console.log(formData)
-    		this.props.onAddRecipe(formData);
+                        console.log(this.props.recipeCreated)
+    		this.props.onAddRecipe(formData) ;
 };
 
 render(){
@@ -57,7 +56,7 @@ const selectStyle = {width: "100%"}
         <Container>
             <Row>
             <Col md={{ size: 6, offset: 3 }}> 
-            {/* {this.props.recipeCreated && <Redirect to="/" />} */}
+            {this.props.recipeCreated  && <Redirect to="/" />}
                 <Form  onSubmit={this.onSubmit} method="POST" encType="multipart/form-data">
                     <FormGroup>
                         <Label for="title"><h3>Title:</h3></Label>

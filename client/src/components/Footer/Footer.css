@@ -1,0 +1,99 @@
+
+.footer {
+    border-top: 1px solid rgb(241, 241, 241);
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.company h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.company h2::after {
+    content: "";
+    display: block;
+    width: 50%;
+    padding-top: 15px;
+    border-bottom: 2px solid rgb(80, 167, 119);
+}
+
+.company li {
+    list-style: none;
+    padding: 10px;
+    color: rgb(164, 170, 178);
+}
+
+.information h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.information h2::after {
+    content: "";
+    display: block;
+    width: 50%;
+    padding-top: 15px;
+    border-bottom: 2px solid rgb(80, 167, 119);
+}
+
+.information li {
+    list-style: none;
+    padding: 10px;
+    color: rgb(164, 170, 178);
+}
+
+.subscribe {
+    display: flex;
+    flex-direction: column;
+}
+
+.subscribe h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.subscribe h2::after {
+    content: "";
+    display: block;
+    width: 20%;
+    padding-top: 15px;
+    border-bottom: 2px solid rgb(80, 167, 119);
+    margin-left: 82px;
+}
+
+.subscribe input {
+    border: 1px solid #a5a5a5;
+    border-radius: 40px;
+    padding: 15px 83px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 10px;
+}
+
+.subscribe button {
+    border: 1px solid #a5a5a5;
+    border-radius: 40px;
+    padding: 15px 83px;
+    background-color: rgb(80, 167, 119);
+    color: white;
+    margin: 10px;
+}
+
+footer {
+    border-top: 1px solid rgb(241, 241, 241);
+    color: rgb(164, 170, 178);
+    padding: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+footer li {
+    display: inline-block;
+    padding: 10px;
+}
