@@ -33,7 +33,7 @@ const mapStateToProps = state => ({
     recipes: state.recipe.recipes,
     isLoading: state.recipe.isLoading,
     isAuth: state.auth.token !== null,
-    userId : state.auth.userId
+    userId : state.auth.user
 });
 
 const mapDispatchToProps = dispatch => ({

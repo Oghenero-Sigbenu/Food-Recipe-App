@@ -3,7 +3,16 @@ const User = require("../models/user");
 
 //get all recipes
 exports.getAllRecipes = (req, res, next) => {
-    Recipes.findAll()
+    Recipes.findAll({
+        include: [
+			{
+				all: true,
+				attributes: { exclude: ["password", "createdAt", "updatedAt"] }
+			}
+		]
+    }
+
+    )
         .then(recipe => {
             res.json(recipe)
             // console.log(recipe)
@@ -36,11 +45,31 @@ exports.getRecipeById = (req, res, next) => {
     .catch(err => res.status(400).json({success: false, message: "Error Occured"}));
 }
 
+exports.getUserRecipes = (req,res,next)=>{
+	const userId = req.userId;
+    Recipes.findAll({
+        where:{
+            userId
+		},
+		include: [
+			{
+				all: true,
+				attributes: { exclude: ["password", "createdAt", "updatedAt"] }
+			}
+		]
+    })
+    .then((recipe)=>{
+        res.json(recipe)
+    })
+    .catch(err=> res.json({
+        success:false
+    }))
+}
 
 exports.postAddRecipe = (req, res, next) => {
     const { title, description, steps, ingredients } = req.body;
-
-    const userId = req.id;
+    console.log("btur ")
+    const userId = req.userId;
     let imageurl;
 
     //error message pops up when fields are empty
@@ -111,4 +140,5 @@ exports.updateRecipe = (req, res, next) => {
         .catch(err =>
 			res.status(500).json({ msg: "Recipe does not exist", error: err })
 		);
-}
+};
+

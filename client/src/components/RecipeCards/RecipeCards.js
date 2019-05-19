@@ -24,7 +24,7 @@ return (
 			{/* <p>{recipe.description}</p> */}
 			 {striptags(recipe.description).slice(0, 25) + "..."} 
 			 	<NavLink to={`detail/` + recipe.id}>Read More</NavLink></div>
-			 {/* <h6>By: {recipe.user.firstname}</h6> */}
+			 {/* <h6>By: {user.firstname}</h6> */}
 			</div>
 			{isAuth ?
 				<>

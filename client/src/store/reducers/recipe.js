@@ -43,13 +43,33 @@ const reducer = (state = initialState, action) => {
             recipeDeleted: false,
             error: null
         };
-    case types.DELETE_RECIPE_SUCCESS:
+        case types.DELETE_RECIPE_SUCCESS:
         return {
             ...state,
             isLoading: false,
             recipeDeleted: true,
             error: null
         };
+        case types.EDIT_RECIPE_INIT:
+        return {
+            ...state,
+            recipeUpdated: false,
+            recipe: action.recipe,
+            error: null
+        }
+        case types.EDIT_RECIPE_SUCCESS:
+        return {
+            ...state,
+            recipeUpdated: true,
+            recipe: action.recipe,
+            error: null
+        }
+        case types.EDIT_RECIPE_DONE:
+        return {
+            ...state,
+            recipeUdated: false,
+            error: null
+        }
         case types.LOADING:
 			return {
 				...state,

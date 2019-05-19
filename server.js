@@ -11,6 +11,7 @@ const cors = require("cors");
 const userRoutes = require("./routes/api/user");
 const recipeRoutes = require("./routes/api/recipe");
 const authRoutes = require("./routes/api/auth");
+const likeRoutes = require("./routes/api/like")
 
 //models
 const User = require("./models/user");
@@ -30,6 +31,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/recipe", recipeRoutes);
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/like", likeRoutes)
 
 
 const PORT = process.env.PORT || 5000

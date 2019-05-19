@@ -8,11 +8,13 @@ exports.postAddUser = (req, res, next) => {
     const { firstname, lastname, email,
         username, password} = req.body;
     console.log("love");
+    let imageurl;
     // if either of the fields are empty render status(404)
     // else find a user by the email
     if (!firstname || !lastname || !email || !username || !password) {
         res.status(400).json("All fields are required")
-    } else {if(req.file){
+    } else 
+        {if(req.file){
 		imageurl = req.file.path;
     }
         //serch if the email already exist
@@ -57,10 +59,10 @@ exports.postAddUser = (req, res, next) => {
                     user: authenticatedUser
                     });  
                     })
-            .catch(err => res.json({ msg:  "failed to create account" }))
+            .catch(err => res.json({ msg: err.message || "no" }))
                 }
             })
-            .catch(err => res.json({ msg:  "failed to create account" }))
+            .catch(err => res.json({ msg: err.message || "failed to create account" }))
     }
 };
 
