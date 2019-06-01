@@ -31,17 +31,25 @@ class RecipeDetail extends Component{
             </div>       
             {/* <h4>by {recipe && recipe.user.firstname} {recipe && recipe.user.lastname}</h4> */}
         <div className="text">
+            <div className="up">
             <div className="description">
                 <h2>How is it done?</h2>
-                <p>{recipe && recipe.steps}</p>
+                {/* <p>{recipe && recipe.steps}</p> */}
                 <p>{recipe && recipe.decription}</p>
             </div>
-            <div>
+            <div className="ingredients">
             <h2>Ingredients Needed</h2>
             <p>{recipe && recipe.ingredients}</p>
-            </div>{/* {recipe && ReactHtmlParser(recipe.description)} */}
             </div>
-            <p>Created {recipe && recipe.updatedAt}</p>
+            </div>
+           <div className="steps">
+                <h2>How to prepare the dish.</h2>
+                <p>{recipe && recipe.steps}</p>
+           </div>
+           
+            {/* {recipe && ReactHtmlParser(recipe.description)} */}
+            {/* <h5>Created <Moment fromNow>{recipe && recipe.updatedAt}</Moment></h5> */}
+
 
             {isAuth ?
 
@@ -53,6 +61,8 @@ class RecipeDetail extends Component{
                 :
                 ""
             }
+            </div>
+
         </div>                   
             </>
             )}

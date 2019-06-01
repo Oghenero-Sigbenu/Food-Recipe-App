@@ -1,6 +1,32 @@
 .nav{
-    color: black;
-    background-color: white;
-    box-shadow: 2px 1px 2px 2px gray;
+    /* color: black; */
+    background-color: rgb(49, 196, 233);
+    /* box-shadow: 2px 1px 2px 2px gray; */
+    height: 90px;
+    color: white;
+    font-size: 20px;
+    font-weight: 100px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     
+}
+.nav-link{
+    color: white;
+}
+
+.logo{
+    color: white;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    background-color: rgb(3, 10, 29);
+    /* font-size: 50px; */
+    position: absolute;
+    top: 15px; 
+    left: 70px;
+    font-style: italic;
+    font-weight: 200px;
+    text-align: center;
+    padding: 15px;
+    padding-right: 10px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }

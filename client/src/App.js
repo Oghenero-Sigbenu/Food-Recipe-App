@@ -45,7 +45,7 @@ export class App extends Component {
     return (
       <div className="App">
           <NavbarApp isAuth={this.props.isAuth} user={this.props.user}/>
-          {routes}
+          {routes}  
       </div>
     );
   }

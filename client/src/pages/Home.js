@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 // import { Spinner } from "reactstrap";
 
 
-import banner from "../files/foody3.jpg";
+import banner from "../files/food7.jpg";
 import Sidebar from "../components/SideBar/SideBar";
 // import RecipeCard from "../components/RecipeCard/RecipeCard";
 import Footer from "../components/Footer/Footer";
@@ -28,15 +28,18 @@ class Home extends Component {
                         <img src={banner}  alt="foody banner" />
                     </div>
                 </div>
-                <div class="menu"></div>
-                <div className="main-section"> 
+                {/* <div class="menu"></div> */}
+                {/* <div className="main-section"> 
                 <div className="side-bar">
                       <Sidebar/>
+               </div> */}
+               <div className="title">
+               <button>RECIPES</button>
                </div>
                 <div className="recipes">
                 <RecipeCards recipes={this.props.recipes} isAuth={this.props.isAuth} user={this.props.userId}  />
                 </div> 
-                </div>
+                {/* </div> */}
                 <div>
                 <Footer/>
                 </div>

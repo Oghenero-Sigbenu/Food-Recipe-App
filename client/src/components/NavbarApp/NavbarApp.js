@@ -30,8 +30,8 @@ class AppNavbar extends Component {
 		return (
 			<div>
 				<Navbar expand="md" className="mb-5 nav">
-					<NavbarBrand tag={NavLink} to="/">
-						Food Recipe App
+					<NavbarBrand tag={NavLink} to="/" >
+					<div className="logo">Foody</div>	
 					</NavbarBrand>
 					    <NavbarToggler onClick={this.toggle} />
 					        <Collapse isOpen={this.state.isOpen} navbar>
@@ -61,11 +61,11 @@ class AppNavbar extends Component {
                     </DropdownToggle>
                     <DropdownMenu right>
                       <DropdownItem>
-                        <NavLink to="/edit-profile">Edit Profile</NavLink>
+                        <NavLink to="/edit-profile" className="nav-l">Edit Profile</NavLink>
                       </DropdownItem>
                       <DropdownItem divider />
                       <DropdownItem>
-                        <NavLink to="/logout">Logout</NavLink>
+                        <NavLink to="/logout" className="nav-l">Logout</NavLink>
                       </DropdownItem>
                     </DropdownMenu>
                   </UncontrolledDropdown>

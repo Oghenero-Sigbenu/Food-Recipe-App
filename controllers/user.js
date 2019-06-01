@@ -45,19 +45,22 @@ exports.postAddUser = (req, res, next) => {
 
             .then(user => {
                 //logins in the user and assigns a token
-            const token = jwt.sign(
-                { id: user.id },process.env.AUTH_SECRET_KEY,{ expiresIn: "2h"});
-            const authenticatedUser = {
-                id: user.id,
-                firstname: user.firstname,
-                lastname: user.lastname,
-                email: user.email,
-                username: user.username
-                } 
-                return res.json({
-                    access_token :token,
-                    user: authenticatedUser
-                    });  
+            // const token = 
+            jwt.sign(
+                { id: user.id },process.env.AUTH_SECRET_KEY,{ expiresIn: "24h"}, (err,token) => {
+                    return res.json({
+                        token,
+                        user
+                        });  
+
+                });
+            // const authenticatedUser = {
+            //     id: user.id,
+            //     firstname: user.firstname,
+            //     lastname: user.lastname,
+            //     email: user.email,
+            //     username: user.username
+            //     } 
                     })
             .catch(err => res.json({ msg: err.message || "no" }))
                 }

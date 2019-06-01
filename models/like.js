@@ -7,7 +7,7 @@ const Recipes = require("./recipe");
 class Like extends Sequelize.Model {}
 Like.init({}, {sequelize});
 
-User.hasMany(Like);
-Recipes.hasMany(Like);
+// User.hasMany(Like);
+// Recipes.hasMany(Like);
 
 module.exports = Like;
