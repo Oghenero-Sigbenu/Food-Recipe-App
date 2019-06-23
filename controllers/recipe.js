@@ -10,7 +10,7 @@ exports.getAllRecipes = (req, res, next) => {
 				attributes: { exclude: ["password", "createdAt", "updatedAt"] }
 			}
 		]
-    }
+    }  
 
     )
         .then(recipe => {
