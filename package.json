@@ -28,7 +28,7 @@
     "react-moment": "^0.9.2",
     "react-router-redux": "^4.0.8",
     "redux-thunk": "^2.3.0",
-    "sequelize": "^5.2.10",
+    "sequelize": "^5.15.1",
     "striptags": "^3.1.1"
   }
 }
