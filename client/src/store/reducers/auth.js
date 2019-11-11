@@ -6,11 +6,12 @@ const initialState ={
     user: null,
     isLoading : false,
     error: null,
-    isLogin: true
+    isLoggedin:  localStorage.getItem('token') ? true : false,
 };
 
 const reducer = (state = initialState, action) => {
-    switch (action.type) {
+    const { type, payload } = action;
+    switch (type) {
         case types.AUTH_START:
         case types.LOAD_AUTH_USER_START:
             return {
@@ -20,12 +21,12 @@ const reducer = (state = initialState, action) => {
         case types.AUTH_SUCCESS:
             return {
                 ...state,
-                token: action.token,
-                user: action.user,
-                userId: action.userId,
+                token:payload.token,
+                user:payload.user,
+                userId: payload.userId,
                 isLoading: false,
-                isLogin: true,
-                error: null
+                isLoggedIn: true,
+                error: null,
             };
         case types.AUTH_FAILED:
         case types.LOGOUT_SUCCESS:

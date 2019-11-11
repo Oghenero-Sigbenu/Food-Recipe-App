@@ -1,0 +1,64 @@
+.alert-style {
+  width: 100%;
+}
+/* The alert message box */
+.red {
+  padding: 10px;
+  background-color: #f44336;
+  color: white;
+  margin: 10px auto 10px auto;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.green {
+  padding: 10px;
+  background-color: green;
+  color: white;
+  margin: 10px auto 10px auto;
+  width: 100%;
+  border-radius: 5px;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+
+.pay-red {
+  padding: 20px;
+  background-color: #f44336; /* Red */
+  color: white;
+  margin: 10px auto 10px auto;
+  width: 50%;
+  position: relative;
+  top: 140px;
+}
+.pay-green {
+  padding: 20px;
+  background-color: green;
+  color: white;
+  margin: 10px auto 10px auto;
+  width: 50%;
+  position: relative;
+  top: 140px;
+}
+
+@media screen and (min-width: 900px) {
+  .alert-style {
+    width: 50%;
+    margin: 0 auto;
+  }
+}

@@ -4,8 +4,8 @@ import {connect} from "react-redux";
 // import ReacthtmlParser from "react-html-parser";
 import { Spinner, Container } from "reactstrap";
 
-import {getSingleRecipe} from "../store/action/recipe";
-import  "../style.css"
+import {getSingleRecipe} from "../../store/action/recipe";
+import  "../../style.css"
 
 class RecipeDetail extends Component{
     componentDidMount = () => {

@@ -13,7 +13,7 @@ const recipeRoutes = require("./routes/api/recipe");
 const authRoutes = require("./routes/api/auth");
 const likeRoutes = require("./routes/api/like");
 const commentRoutes = require("./routes/api/comment");
-const emailRoutes = require("./routes/api/email")
+const emailRoutes = require("./routes/api/email");
 
 //models
 const User = require("./models/user");
@@ -35,7 +35,7 @@ app.use("/api/v1/recipe", recipeRoutes);
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/like", likeRoutes);
 app.use("/api/v1/comment", commentRoutes);
-app.use("api/v1/email", emailRoutes)
+app.use("/api/v1/email", emailRoutes)
 
 const PORT = process.env.PORT || 5000
 

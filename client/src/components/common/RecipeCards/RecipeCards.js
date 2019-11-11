@@ -9,8 +9,7 @@ import striptags from 'striptags';
 
 
 import "./RecipeCards.css"
-const RecipeCards = ({recipes, isAuth, user}) => {
-	console.log({recipes, isAuth, user})
+const RecipeCards = ({recipes, isAuth, user,click}) => {
 	
 	// const divStyle = {display: "flex", width: "100%", background_color: "danger"}
 return (
@@ -31,8 +30,8 @@ return (
 				<>
 					<div className="recipe-actions">
 						{/* <i class="far fa-bookmark"></i>  */}
-						<button><i className="fas fa-bookmark"></i></button>
-						<button><i className="far fa-heart">12</i></button>
+						{/* <button><i className="fas fa-bookmark"></i></button> */}
+						<button onClick={click}><i className="far fa-heart">12</i></button>
 						<i className="far fa-comment-alt">123</i>
 					</div>
 				</>

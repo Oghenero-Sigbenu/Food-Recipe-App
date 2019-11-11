@@ -18,49 +18,42 @@ export const authStart = () => ({
     error
  });
 
- export const auth = authData => (dispatch, getState) => {
-  console.log("register")
-
-    dispatch(authStart());
-    const isLogin = getState().auth.isLogin;
-    let endPoint = null;
-    let formData = null;
-    const config = {
-        headers: {}
-    };
-
-    //if not loggedIn register
-    if(!isLogin) {
-        config.headers["Content-type"] = "multipart/form-data";
-        endPoint ="user";
-        formData = new FormData();
-        formData.append("firstname", authData.firstname);
-        formData.append("lastname", authData.lastname);
-        formData.append("username", authData.username);
-        formData.append("email", authData.email);
-        formData.append("password", authData.password);
-        formData.append("imageurl", authData.imageurl);
-
-    }
-    else{
-        config.headers["Content-Type"] = "application/json";
-		endPoint = "auth";
-		formData = authData;
-    }
-
-    axios.post("/" + endPoint, formData,config)
+ export const auth = (authData, callback) => {
+	 console.log(authData)
+    return (dispatch) => {
+      dispatch(authStart())
+      axios.post("/user/", authData)
         .then(res => {
-            const {token, user} = res.data; 
-            console.log(res.data)
-            const userId = user.id;
-            localStorage.setItem("token", token);
-            localStorage.setItem("userId", userId);
-            dispatch(authSuccess(token, userId, user))
-
-         })
-         .catch(err => dispatch(authFailed(err)));
-        
+          const {token, user} = res.data; 
+          console.log(res.data)
+          const userId = user.id;
+          localStorage.setItem("token", token);
+          localStorage.setItem("user", user);
+		  dispatch(authSuccess(token, userId, user))
+		  callback('/');
+        })
+        .catch(err => dispatch(authFailed(err)));
+      }    
  }
+
+ export const login = (authData, callback) => {
+	console.log(authData)
+   return (dispatch) => {
+	 dispatch(authStart())
+	 axios.post("/user/login", authData)
+	   .then(res => {
+		 const {token, user} = res.data; 
+		 console.log(res.data)
+		 const userId = user.id;
+		 localStorage.setItem("token", token);
+		 localStorage.setItem("user", user);
+		 dispatch(authSuccess(token, userId, user))
+		 callback('/');
+
+	   })
+	   .catch(err => dispatch(authFailed(err)));
+	 }    
+}
 
  export const toggleAuth = () => ({
     type: types.TOGGLE_AUTH

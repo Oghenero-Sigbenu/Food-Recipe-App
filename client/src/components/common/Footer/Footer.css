@@ -99,3 +99,26 @@ footer li {
     display: inline-block;
     padding: 10px;
 }
+.cs-btn{
+    display: flex;
+  }
+  .cs-btn input{
+    border-radius: 5px;
+    border: none;
+    padding:10px; 
+    background-color: #dbd4d4;
+  }
+   .c-btn{
+    min-width: 100px;
+    vertical-align: middle; 
+    padding: 10px;
+    border-radius: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    background: red;
+    color: white;
+    font-size: 16px;
+    font-family: "Bold";
+  } 
+  

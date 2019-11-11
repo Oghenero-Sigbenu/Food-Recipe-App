@@ -28,8 +28,8 @@ class AppNavbar extends Component {
 
     render() {
 		return (
-			<div>
-				<Navbar expand="md" className="mb-5 nav">
+			<div className="new-nav">
+				<Navbar expand="md" className="mb-5 newN nav">
 					<NavbarBrand tag={NavLink} to="/" >
 					<div className="logo">Foody</div>	
 					</NavbarBrand>
@@ -70,7 +70,7 @@ class AppNavbar extends Component {
                     </DropdownMenu>
                   </UncontrolledDropdown>
 								) : (
-									<NavLink to="/auth" className="nav-link">
+									<NavLink to="/login" className="nav-link">
 										Login
 									</NavLink>
 								)}

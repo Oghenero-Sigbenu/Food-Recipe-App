@@ -20,7 +20,7 @@ import {
   Alert
 } from "reactstrap";
 
- import { auth, toggleAuth } from "../store/action/auth";
+ import { auth, toggleAuth } from "../../store/action/auth";
 
  class Auth extends Component {
   state = {
@@ -59,14 +59,11 @@ import {
     } else {
       formData = {
         firstname: this.state.firstname,
-        lastname: this.state.lastname,
         username: this.state.username,
         email: this.state.email,
         password: this.state.password,
-        imageurl: this.state.imageurl
       };
       this.props.onAuth(formData);
-      console.log(formData)
     }
   };
 
@@ -96,33 +93,10 @@ import {
                         type="text"
                         name="firstname"
                         id="firstname"
-                        placeholder="Enter First Name"
+                        placeholder="Full Name"
                         onChange={this.onChanged}
                       />
                     </FormGroup>
-                    <FormGroup>
-                    {/* <Label for="lastname">Last Name</Label> */}
-                    <Input
-                      type="text"
-                      name="lastname"
-                      id="lastname"
-                      placeholder="Enter Last Name"
-                      onChange={this.onChanged}
-                    />
-                  </FormGroup>
-                  <FormGroup>
-                    <Label for="profilePic">Profile Picture</Label>
-                    <Input
-                        type="file"
-                        name="imageurl"
-                        id="profilePic"
-                        accept=".jpg, .jpeg, .png"
-                        onChange={this.onImgChanged}
-                    />
-                    <FormText color="muted">
-                        Do you wish for your profile to be easily noticed? Images must be png, jpg or jpeg format.
-                    </FormText>
-                </FormGroup>
                   <FormGroup>
                     {/* <Label for="username">Username</Label> */}
                     <Input

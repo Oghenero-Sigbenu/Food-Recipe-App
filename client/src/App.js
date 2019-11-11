@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import { Route, Switch } from "react-router-dom";
-// import { Container } from "reactstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import './App.css';
-import NavbarApp from './components/NavbarApp/NavbarApp'
-import {Home, Auth, Recipes, CreateRecipe, RecipeDetail} from "./pages/Index"
 import { connect } from "react-redux";
+import { Route, Switch } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+//components
+import './App.css';
+import './style.css';
+import NavbarApp from './components/common/NavbarApp/NavbarApp'
+import {Home,Login, Auth, Recipes, CreateRecipe, RecipeDetail, Register} from "./components/pages/Index";
+import Logout from "./components/Logout";
+
+//actions
 import { authAutoLogin, loadAuthUser } from "./store/action/auth"
-import Logout from "./components/Logout"
-
-
 
 export class App extends Component {
 
@@ -22,9 +24,10 @@ export class App extends Component {
   render() {
     let routes = (
       <Switch>
-        <Route path="/auth" component={Auth} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
         <Route path="/recipe" component={Recipes} />
-        {/* <Route path="/detail/:id" component={RecipeDetail} /> */}
+        <Route path="/detail/:id" component={RecipeDetail} />
         <Route path="/" exact component={Home} />
         <Route render={() => <h2>Not Found</h2>} />
       </Switch>
@@ -32,6 +35,8 @@ export class App extends Component {
     if (this.props.isAuth){
       routes =(
     <Switch>
+      <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
         <Route path="/logout" component={Logout} />
         <Route path="/auth" component={Auth} />
         <Route path="/add" component={CreateRecipe} /> 

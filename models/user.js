@@ -8,10 +8,6 @@ User.init({
             type: Sequelize.STRING,
             allowNull: false
         },
-        lastname:{
-            type: Sequelize.STRING,
-            allowNull: false
-        },
         email:{
             type: Sequelize.STRING,
             allowNull: false
@@ -23,11 +19,7 @@ User.init({
         password:{
             type: Sequelize.STRING,
             allowNull: false
-        },
-        imageurl:{
-            type: Sequelize.STRING,
-            allowNull: true
-        },
+        }
     },{sequelize});
 
 module.exports = User;

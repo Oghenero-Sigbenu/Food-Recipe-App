@@ -8,6 +8,7 @@
     justify-content: space-between;
     margin: 0 auto;
 }
+
 .recipe-image{
     width: 40%;
     height: 500px;
@@ -41,13 +42,14 @@ img{
     display: flex;
     flex-wrap: wrap;
     height: 600px;
-    position: relative;
+    /* position: absolute;
+    top: 0; */
 
 }
 .banner-text{
     width: 40%;
     height: 100%;
-    margin-top: 10%;
+    margin-top: 20%;
     font-family: 'Barlow', sans-serif;
   font-size: 38px;
 } 
@@ -66,8 +68,8 @@ img{
     height: 50px;
     background-color: white;
     /* box-shadow: 2px 1px 2px 2px gray; */
-    position: absolute;
-    top: 535px;
+    /* position: absolute;
+    top: 535px; */
 }
 .banner-text button{
     border-radius: 50px;
@@ -75,11 +77,11 @@ img{
     width: 200px;
     height: 45px;
     font-size: 20px;
-    background-color: rgba(190, 197, 206, 0.986)
+    /* background-color: rgba(17, 77, 156, 0.986) */
 }
 .main-section{
     width: 100%;
-    height: 2000px;
+    height: 2000sspx;
     display: flex;
     margin-top: 10px;
 }

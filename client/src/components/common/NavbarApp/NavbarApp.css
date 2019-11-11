@@ -1,6 +1,6 @@
 .nav{
     /* color: black; */
-    background-color: rgb(49, 196, 233);
+    background-color: rgba(190, 197, 206, 0.986);
     /* box-shadow: 2px 1px 2px 2px gray; */
     height: 90px;
     color: white;
@@ -29,4 +29,12 @@
     padding: 15px;
     padding-right: 10px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.new-nav{
+    background: none !important;
+}
+
+.newN{
+    /* background: none !important; */
+    z-index: 1000;
 }

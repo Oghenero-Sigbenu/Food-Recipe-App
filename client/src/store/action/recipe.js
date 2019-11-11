@@ -74,6 +74,7 @@ export const getSingleRecipe = recipeId => {
 
 //creating a recipe
 export const addRecipe = recipeData => {
+    console.log(recipeData)
     return (dispatch, getState) => {
         dispatch(loading());
         const token = getState().auth.token;

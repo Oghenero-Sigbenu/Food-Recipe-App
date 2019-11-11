@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import {addRecipe, addRecipeStart} from "../store/action/recipe";
 import {connect} from "react-redux";
 import { Redirect } from "react-router-dom";
 import {
@@ -11,6 +10,7 @@ import {
     Input,
     Label
   } from "reactstrap";
+import {addRecipe} from "../../store/action/recipe";
 
 class CreateRecipe extends Component {
     state ={
@@ -42,10 +42,12 @@ class CreateRecipe extends Component {
                         description: this.state.description,
                         ingredients: this.state.ingredients,
                         steps: this.state.steps,
-                        imageurl: this.state.imageurl
+                        imageurl: this.state.imageurl,
+                        UserId: this.props.id,
+                        token: this.props.token,
                         }
-                        console.log(this.props.recipeCreated)
-    		this.props.onAddRecipe(formData) ;
+                        console.log(formData)
+    		this.props.addRecipe(formData) ;
 };
 
 render(){
@@ -128,15 +130,9 @@ const selectStyle = {width: "100%"}
 const mapStateToProps = state => ({
 	isLoading: state.recipe.isLoading,
 	recipeCreated: state.recipe.recipeCreated,
-	error: state.recipe.error
+    error: state.recipe.error,
+    token: state.auth.token,
+    id: state.auth.userId
 });
 
-const mapDispatchToProps = dispatch => ({
-	onAddRecipeStart: () => dispatch(addRecipeStart()),
-	onAddRecipe: formData => dispatch(addRecipe(formData))
-});
-
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(CreateRecipe);
+export default connect(mapStateToProps,{addRecipe})(CreateRecipe);
