@@ -43,8 +43,14 @@ class Register extends Component {
 
   submit() {
     const { name, email,  username, password } = this.state;
-    this.props.auth({ firsname:name, email, username, password })
-    
+    console.log(name, email,  username, password)
+    this.props.auth({ firstname:name , email, username, password }, this.navigate)
+    this.setState({
+      show: false
+    })
+    setTimeout(() => {
+      this.props.history.push("/");
+    }, 500);
   }
 
   getValue(title, value, disable) {

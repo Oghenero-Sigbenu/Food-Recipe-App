@@ -40,7 +40,7 @@ class Login extends Component {
 
   submit() {
     const { email, password } = this.state;
-    this.props.login({ email, password }, this.navigate)
+    this.props.login({email, password}, this.navigate)
   }
 
   getValue(title, value, disable) {

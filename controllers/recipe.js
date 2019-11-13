@@ -67,9 +67,8 @@ exports.getUserRecipes = (req,res,next)=>{
 }
 
 exports.postAddRecipe = (req, res, next) => {
-    const { title, description, steps, ingredients } = req.body;
+    const { title, description, steps, ingredients,UserId } = req.body;
     console.log("btur ")
-    const userId = req.userId;
     let imageurl;
 
     //error message pops up when fields are empty
@@ -80,9 +79,9 @@ exports.postAddRecipe = (req, res, next) => {
         if (req.file) {
             imageurl = req.file.path;
         }
-        User.findByPk(userId)
+        User.findByPk(UserId)
             .then(user => {
-                Recipes.create({ title, description, steps, ingredients, imageurl, userId })
+                Recipes.create({ title, description, steps, ingredients, imageurl, UserId })
                 .then(recipe => {
                     res.json(recipe)
                 })

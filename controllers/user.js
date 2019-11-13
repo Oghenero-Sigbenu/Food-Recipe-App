@@ -73,24 +73,26 @@ exports.addUser = (req, res, next) => {
 	  res.status(400).json({ msg: "All Fields are required" })
 	} else {
 		console.log(email)
-	  User.findAll({
+	  User.findOne({
 		where: {
 		  username
 		}
 	  })
 		.then((userUsername) => {
-		  if (userUsername.length > 0) {
-			return res.status(400).json({ msg: "Username already exists", data: userUsername })
+			if (userUsername) {
+				console.log("email exist ")
+			return res.status(400).json({ msg: "Username already exists" })
 		  } else {
-			User.findAll({
-			  where: {
-				email
-			  }
-			})
-			  .then((userEmail) => {
-				if (userEmail.length > 0) {
-				  return res.status(400).json({ msg: "Email already exists", data: userEmail })
-				} else {
+			// User.findAll({
+			//   where: {
+			// 	email
+			//   }
+			// })
+			//   .then((userEmail) => {
+			// 	if (userEmail.length > 0) {
+			// 		console.log("email exist ")
+			// 	  return res.status(400).json({ msg: "Email already exists", data: userEmail })
+				// } else {
 				  let hashedPassword;
 				  try {
 					const salt = bcrypt.genSaltSync(10);
@@ -110,18 +112,20 @@ exports.addUser = (req, res, next) => {
 						process.env.AUTH_SECRET_KEY,
 						{ expiresIn: "1h" },
 						(err, token) => {
-						  welcomeMail(req, res, next);
-						  res.json({
+						//   welcomeMail(req, res, next);
+						  res.status(201).json({
 							token,
-							user
+							user,
+							msg:"Success"
 						  })
 						})
 					})
 					.catch((err) => {
 					  res.status(500).json({ msg: "error occured", err })
 					})
-				}
-			  }).catch((err) => {
+				// }
+			//   })/
+			  .catch((err) => {
 				res.status(500).json({ msg: err })
   
 			  })
@@ -160,9 +164,9 @@ exports.login = (req, res, next) => {
 							process.env.AUTH_SECRET_KEY,
 							{ expiresIn: "1h" },
 							(err, token) => {
-								res.json({
+								res.status(200).json({
 									token,
-									user
+									user,msg:"Success"
 								});
 							}
 						);

@@ -36,6 +36,7 @@ class CreateRecipe extends Component {
 
    
     onSubmit = (e) => {
+        console.log(this.props.user,)
         e.preventDefault();
         const formData = {
                         title: this.state.title, 
@@ -43,7 +44,7 @@ class CreateRecipe extends Component {
                         ingredients: this.state.ingredients,
                         steps: this.state.steps,
                         imageurl: this.state.imageurl,
-                        UserId: this.props.id,
+                        UserId: this.props.user.id,
                         token: this.props.token,
                         }
                         console.log(formData)
@@ -132,7 +133,9 @@ const mapStateToProps = state => ({
 	recipeCreated: state.recipe.recipeCreated,
     error: state.recipe.error,
     token: state.auth.token,
-    id: state.auth.userId
+    id: state.auth.userId,
+    user: state.auth.user
+
 });
 
 export default connect(mapStateToProps,{addRecipe})(CreateRecipe);

@@ -2,18 +2,28 @@ import * as types from "../action/types";
 
 const initialState ={
     token: localStorage.getItem("token"),
-    userId: localStorage.getItem("userId"),
-    user: null,
+     user: JSON.parse(localStorage.getItem('user')),
+    // user: null,
     isLoading : false,
     error: null,
     isLoggedin:  localStorage.getItem('token') ? true : false,
 };
+// const token = localStorage.getItem('token');
+// const checkToken = token != null ? true : false;
+
+// const initialState = {
+//   token,
+//   isLoggedIn: checkToken,
+//   user: JSON.parse(localStorage.getItem('user')),
+//   isLoading: false
+// }
+
 
 const reducer = (state = initialState, action) => {
     const { type, payload } = action;
     switch (type) {
         case types.AUTH_START:
-        case types.LOAD_AUTH_USER_START:
+        case types.LOAD_AUTH_USER_START: 
             return {
                 ...state,
                 isLoading: true

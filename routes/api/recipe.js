@@ -16,6 +16,6 @@ route.get("/user/recipes",authenticate, recipeControllers.getUserRecipes)
 route.delete("/delete/:id",authenticate, recipeControllers.deleteRecipe)
 route.get("/edit/:id",authenticate, recipeControllers.getRecipeById)
 route.put("/edit/:id",authenticate, upload.single('imageurl'), recipeControllers.updateRecipe)
-route.post("/post", authenticate, upload.single('imageurl'), recipeControllers.postAddRecipe)
+route.post("/post",  upload.single('imageurl'), recipeControllers.postAddRecipe)
 
 module.exports = route;

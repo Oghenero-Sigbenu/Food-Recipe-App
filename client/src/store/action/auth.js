@@ -28,8 +28,9 @@ export const authStart = () => ({
           console.log(res.data)
           const userId = user.id;
           localStorage.setItem("token", token);
-          localStorage.setItem("user", user);
+		  localStorage.setItem("user", JSON.stringify(user));
 		  dispatch(authSuccess(token, userId, user))
+		  console.log(user)
 		  callback('/');
         })
         .catch(err => dispatch(authFailed(err)));
@@ -46,7 +47,7 @@ export const authStart = () => ({
 		 console.log(res.data)
 		 const userId = user.id;
 		 localStorage.setItem("token", token);
-		 localStorage.setItem("user", user);
+		 localStorage.setItem("user", JSON.stringify(user));
 		 dispatch(authSuccess(token, userId, user))
 		 callback('/');
 

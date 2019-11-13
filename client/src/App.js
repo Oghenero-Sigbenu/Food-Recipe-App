@@ -16,7 +16,7 @@ import { authAutoLogin, loadAuthUser } from "./store/action/auth"
 export class App extends Component {
 
   componentDidMount = () => {
-    this.props.onAutoLogin();
+    // this.props.onAutoLogin();
     if(this.props.isAuth) {
       this.props.onLoadAuthUser();
     }
@@ -47,9 +47,11 @@ export class App extends Component {
     </Switch>
        );
        }
+       const {isAuth,user} =  this.props;
+       console.log(isAuth,user)
     return (
       <div className="App">
-          <NavbarApp isAuth={this.props.isAuth} user={this.props.user}/>
+          <NavbarApp isAuth={isAuth} user={user}/>
           {routes}  
       </div>
     );
@@ -63,7 +65,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onAutoLogin: () => dispatch(authAutoLogin()),
+  // onAutoLogin: () => dispatch(authAutoLogin()),
   onLoadAuthUser: () => dispatch(loadAuthUser())
 });
 

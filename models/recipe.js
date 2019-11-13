@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../config/database")
-//  const User = require("./user")
+ const User = require("./user");
 
 
 class Recipes extends Sequelize.Model{}
@@ -28,7 +28,8 @@ class Recipes extends Sequelize.Model{}
 
     },{sequelize});
 
-    //  User.hasMany(Recipes);
+     User.hasMany(Recipes);
+    Recipes.belongsTo(User)  
     //Category.hasMany(Recipe);
 
     module.exports = Recipes;
