@@ -94,13 +94,11 @@ export const addRecipe = recipeData => {
     }      
         axios.post("recipe/post", formData, config)
             .then(res => {
-                return dispatch(addRecipeSuccess(res.data))
-            })
-            .then(() => {
-                dispatch(addRecipeStart());
+                dispatch(addRecipeSuccess(res.data))
+                console.log(res.data)
             })
             .catch(err => dispatch(errorOccured(err)))
-                }
+            }
     }
 
 //deleting a recipe

@@ -36,7 +36,7 @@ class CreateRecipe extends Component {
 
    
     onSubmit = (e) => {
-        console.log(this.props.user,)
+        console.log(this.props.user)
         e.preventDefault();
         const formData = {
                         title: this.state.title, 

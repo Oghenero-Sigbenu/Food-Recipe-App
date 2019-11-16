@@ -106,6 +106,7 @@ prev = () => {
     render() {
         const rendImage = this.renderSlide()
         setTimeout(this.setNextImage, 10000);
+        const {recipes,isAuth,userId} = this.props;
         return (
             <div className="home">
               <div className="banner">
@@ -116,18 +117,12 @@ prev = () => {
                 </div>
                 {rendImage}
               </div>
-                {/* <div class="menu"></div> */}
-                {/* <div className="main-section"> 
-                <div className="side-bar">
-                      <Sidebar/>
-               </div> */}
                <div className="title">
                <button>RECIPES</button>
                </div>
                 <div className="recipes">
-                <RecipeCards recipes={this.props.recipes} isAuth={this.props.isAuth} user={this.props.userId}  />
+                <RecipeCards recipes={recipes} isAuth={isAuth} user={userId}  />
                 </div> 
-                {/* </div> */}
                 <div>
                 <Footer/>
                 </div>
@@ -152,7 +147,6 @@ prev = () => {
                         )}
                         </div>
                 </section> */}
-                {/* <Footer/> */}
             </div>
         )
     }

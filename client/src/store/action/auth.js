@@ -25,12 +25,10 @@ export const authStart = () => ({
       axios.post("/user/", authData)
         .then(res => {
           const {token, user} = res.data; 
-          console.log(res.data)
           const userId = user.id;
-          localStorage.setItem("token", token);
+          localStorage.myToken = token;
 		  localStorage.setItem("user", JSON.stringify(user));
 		  dispatch(authSuccess(token, userId, user))
-		  console.log(user)
 		  callback('/');
         })
         .catch(err => dispatch(authFailed(err)));
@@ -44,9 +42,8 @@ export const authStart = () => ({
 	 axios.post("/user/login", authData)
 	   .then(res => {
 		 const {token, user} = res.data; 
-		 console.log(res.data)
 		 const userId = user.id;
-		 localStorage.setItem("token", token);
+		 localStorage.myToken = token;
 		 localStorage.setItem("user", JSON.stringify(user));
 		 dispatch(authSuccess(token, userId, user))
 		 callback('/');

@@ -1,22 +1,22 @@
 import * as types from "../action/types";
 
-const initialState ={
-    token: localStorage.getItem("token"),
-     user: JSON.parse(localStorage.getItem('user')),
-    // user: null,
-    isLoading : false,
-    error: null,
-    isLoggedin:  localStorage.getItem('token') ? true : false,
-};
-// const token = localStorage.getItem('token');
-// const checkToken = token != null ? true : false;
+// const initialState ={
+//     token: localStorage.getItem("token"),
+//      user: JSON.parse(localStorage.getItem('user')),
+//     // user: null,
+//     isLoading : false,
+//     error: null,
+//     isLoggedin:  localStorage.getItem('token') ? true : false,
+// };
+const token = localStorage.myToken;
+const checkToken = token != null ? true : false;
 
-// const initialState = {
-//   token,
-//   isLoggedIn: checkToken,
-//   user: JSON.parse(localStorage.getItem('user')),
-//   isLoading: false
-// }
+const initialState = {
+  token,
+  isLoggedIn: checkToken,
+  user: JSON.parse(localStorage.getItem('user')),
+  isLoading: false
+}
 
 
 const reducer = (state = initialState, action) => {

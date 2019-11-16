@@ -1,7 +1,7 @@
 
 .all-recipes{
     width:80%;
-    height: 800px;
+    /* height: 800px; */
     display:flex;
     flex-wrap: wrap;
     justify-content: space-evenly;

@@ -76,10 +76,7 @@ exports.postAddRecipe = (req, res, next) => {
         res.json({ msg: "All fields are required" })
     }
     else {
-        if (req.file) {
-            imageurl = req.file.path;
-        }
-        User.findByPk(UserId)
+            User.findByPk(UserId)
             .then(user => {
                 Recipes.create({ title, description, steps, ingredients, imageurl, UserId })
                 .then(recipe => {
