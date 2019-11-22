@@ -60,7 +60,8 @@ class Login extends Component {
         {/* <Header /> */}
         <div className="container">
           <div style={{ width: '100%'}}>
-            {/* {isLoading ? */}
+            
+            {isLoading ? <Spinner/> :
               <>
                 <h2>Sign In</h2>
                 <div className="alert-style">{alertMsg}</div>
@@ -72,7 +73,7 @@ class Login extends Component {
                   <NavLink to="/register" onClick={() => this.navigate('/register')}>No account ? Sign Up!</NavLink>
                 </div>
               </>
-            {/* : <Spinner /> }s */}
+          }
           </div>
         </div>
       </AnimateInOut>

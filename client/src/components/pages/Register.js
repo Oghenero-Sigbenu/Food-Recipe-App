@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink,Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { auth } from '../../store/action/auth';
@@ -7,7 +7,6 @@ import { auth } from '../../store/action/auth';
 import InputValidator from '../common/InputValidator';
 import { reg, isUsername } from '../common/Validation';
 import Button from '../common/Button';
-import Spinner from '../common/Spinner';
 import Alert from '../common/Alert';
 import { AnimateInOut } from '../common/AnimateInOut';
 
@@ -62,7 +61,7 @@ class Register extends Component {
 
   render() {
     const { name, email, username, password, disable, show } = this.state;
-    const { isLoading, msg,token } = this.props;
+    const {  msg } = this.props;
     const alertMsg = msg ? <Alert classStyle="red" msg={msg} /> : "";
     return (
       <AnimateInOut classname={show ? 'slide-in-top one' : 'slide-out-left'}>

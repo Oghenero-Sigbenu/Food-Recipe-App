@@ -27,7 +27,7 @@ class AppNavbar extends Component {
 	                };
 
     render() {
-		const {user,token,isAuth} = this.props;
+		const {user,isAuth} = this.props;
 		return (
 			<div className="new-nav">
 				<Navbar expand="md" className="mb-5 newN nav">
