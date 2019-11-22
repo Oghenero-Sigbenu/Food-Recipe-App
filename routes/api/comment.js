@@ -7,5 +7,6 @@ const route = express.Router();
 
 route.get("/all", commentController.getComments);
 route.post("/add",  commentController.addComment)
+route.get("/:id", commentController.getRecipeComment);
 
 module.exports = route;

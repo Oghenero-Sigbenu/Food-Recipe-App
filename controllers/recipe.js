@@ -70,22 +70,24 @@ exports.postAddRecipe = (req, res, next) => {
     const { title, description, steps, ingredients,UserId } = req.body;
     console.log("btur ")
     let imageurl;
-
+    if(req.path){
+                imageurl = req.file.path;
+            }
     //error message pops up when fields are empty
-    if (!title || !description || !steps || !ingredients) {
-        res.json({ msg: "All fields are required" })
-    }
-    else {
+    // if (!title || !description || !steps || !ingredients) {
+    //     res.json({ msg: "All fields are required" })
+    // }
+    // else {
             User.findByPk(UserId)
             .then(user => {
                 Recipes.create({ title, description, steps, ingredients, imageurl, UserId })
                 .then(recipe => {
-                    res.json(recipe)
+                    res.status(200).json({msg: "succssfully created ",data:recipe})
                 })
                 .catch(err => res.json({ msg: err.message || "failed to create" }))
                  })
-            .catch(err => res.json({ msg: err.message || "failed to create" }))
-                }
+            .catch(err => res.json({ msg: err.message || "User not found" }))
+                // }
 
                 }
 

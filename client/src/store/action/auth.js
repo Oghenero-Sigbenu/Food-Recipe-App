@@ -19,7 +19,6 @@ export const authStart = () => ({
  });
 
  export const auth = (authData, callback) => {
-	 console.log(authData)
     return (dispatch) => {
       dispatch(authStart())
       axios.post("/user/", authData)
@@ -36,7 +35,6 @@ export const authStart = () => ({
  }
 
  export const login = (authData, callback) => {
-	console.log(authData)
    return (dispatch) => {
 	 dispatch(authStart())
 	 axios.post("/user/login", authData)
@@ -46,8 +44,7 @@ export const authStart = () => ({
 		 localStorage.myToken = token;
 		 localStorage.setItem("user", JSON.stringify(user));
 		 dispatch(authSuccess(token, userId, user))
-		 callback('/');
-
+		//  callback('/');
 	   })
 	   .catch(err => dispatch(authFailed(err)));
 	 }    
@@ -92,10 +89,8 @@ export const loadAuthUser = () => (dispatch, getState) => {
 	if (token) {
 		config.headers["x-access-token"] = token;
 	}
-	axios
-		.get("/auth/all", config)
+	axios.get("/auth/all", config)
 		.then(res => {
-			console.log(res.data);
 			dispatch(loadAuthUserSuccess(res.data));
 		})
 		.catch(error =>

@@ -48,7 +48,6 @@ export const getRecipe = () => {
             axios.get("/recipe/all")
                 .then(res => {
                     dispatch(getRecipeSuccess(res.data))
-                    console.log(res.data)
                     })
                     .then(() => {
                         dispatch(getRecipeStart());
@@ -60,12 +59,10 @@ export const getRecipe = () => {
 
 //get single recipe
 export const getSingleRecipe = recipeId => {
-    console.log("new")    
     return dispatch => {
         dispatch(loading());
             axios.get(`/recipe/${recipeId}`)
             .then(res => {
-                console.log(res.data)
                 dispatch({ type: types.GET_SINGLE_RECIPES_SUCCESS, recipe: res.data})
             })
             .catch(err => dispatch(errorOccured(err)));
@@ -74,16 +71,15 @@ export const getSingleRecipe = recipeId => {
 
 //creating a recipe
 export const addRecipe = recipeData => {
-    console.log(recipeData)
     return (dispatch, getState) => {
         dispatch(loading());
-        const token = getState().auth.token;
+        // const token = getState().auth.token;
 
         let formData;
         const config = { headers: {}};
     
-    if(token){
-        config.headers["x-access-token"] = token;
+    // if(token){ 
+        // config.headers["x-access-token"] = token;
         config.headers["Content-Type"] = "multipart/form-data";
         formData = new FormData();
         formData.append("title", recipeData.title);
@@ -91,11 +87,10 @@ export const addRecipe = recipeData => {
         formData.append("steps", recipeData.steps);
         formData.append("ingredients", recipeData.ingredients);
         formData.append("imageurl", recipeData.imageurl);
-    }      
+    // }      
         axios.post("recipe/post", formData, config)
             .then(res => {
                 dispatch(addRecipeSuccess(res.data))
-                console.log(res.data)
             })
             .catch(err => dispatch(errorOccured(err)))
             }

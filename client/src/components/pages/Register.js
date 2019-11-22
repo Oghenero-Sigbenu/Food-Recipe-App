@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink,Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { auth } from '../../store/action/auth';
@@ -43,8 +43,7 @@ class Register extends Component {
 
   submit() {
     const { name, email,  username, password } = this.state;
-    console.log(name, email,  username, password)
-    this.props.auth({ firstname:name , email, username, password }, this.navigate)
+    this.props.auth({ firstname:name , email, username, password })
     this.setState({
       show: false
     })
@@ -63,14 +62,14 @@ class Register extends Component {
 
   render() {
     const { name, email, username, password, disable, show } = this.state;
-    const { isLoading, msg } = this.props;
+    const { isLoading, msg,token } = this.props;
     const alertMsg = msg ? <Alert classStyle="red" msg={msg} /> : "";
     return (
       <AnimateInOut classname={show ? 'slide-in-top one' : 'slide-out-left'}>
+      {/* {token ? <Redirect to="/"/>  :"no" } */}
         {/* <Header /> */}
         <div className="container">
           <div style={{ width: '100%', position: 'relative', top: '50px' }}>
-            {isLoading ? <Spinner /> :
               <>
                 <h2>Register</h2>
                 <div className="alert-style">{alertMsg}</div>
@@ -83,7 +82,7 @@ class Register extends Component {
                   <NavLink to="/login" onClick={() => this.navigate('/login')}>Have an account ? Sign In!</NavLink>
                 </div>
               </>
-            }
+           
           </div>
         </div>
       </AnimateInOut>
@@ -92,10 +91,11 @@ class Register extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { isLoggedIn, isLoading, msg } = state.auth;
+  const { isLoggedIn, isLoading,token,msg } = state.auth;
   return {
     isLoggedIn,
     isLoading,
+    token,
     msg
   }
 }

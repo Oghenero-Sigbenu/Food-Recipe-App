@@ -27,15 +27,15 @@ class AppNavbar extends Component {
 	                };
 
     render() {
-		// const {}
+		const {user,token,isAuth} = this.props;
 		return (
 			<div className="new-nav">
 				<Navbar expand="md" className="mb-5 newN nav">
 					<NavbarBrand tag={NavLink} to="/" >
-					<div className="logo">Foody</div>	
+					<div className="logo"><h2>Foody</h2></div>	
 					</NavbarBrand>
-					    <NavbarToggler onClick={this.toggle} />
-					        <Collapse isOpen={this.state.isOpen} navbar>
+					    <NavbarToggler onClick={this.toggle} className="white" />
+					        <Collapse isOpen={this.state.isOpen} className="white" navbar>
 						        <Nav className="ml-auto" navbar>
 							        <NavItem>
                                     <NavLink exact to="/" className="nav-link">
@@ -47,7 +47,7 @@ class AppNavbar extends Component {
                                        Recipes
                                     </NavLink>
                                     </NavItem>
-                                    {this.props.isAuth && (
+                                    {isAuth && (
                                     <NavItem>
 									<NavLink to="/add" className="nav-link">
 										Add Recipe
@@ -55,18 +55,18 @@ class AppNavbar extends Component {
 								    </NavItem>
 							         )} 
 							        {/* <NavItem> */}
-									{this.props.isAuth ? (
+									{isAuth ? (
                   <UncontrolledDropdown nav inNavbar>
                     <DropdownToggle nav caret>
-                      {this.props.user && this.props.user.username}
+                      {user && user.username}
                     </DropdownToggle>
                     <DropdownMenu right>
                       <DropdownItem>
-                        <NavLink to="/edit-profile" className="nav-l">Edit Profile</NavLink>
+                        <NavLink to="/edit-profile" className="nav-link">Edit Profile</NavLink>
                       </DropdownItem>
                       <DropdownItem divider />
                       <DropdownItem>
-                        <NavLink to="/logout" className="nav-l">Logout</NavLink>
+                        <NavLink to="/logout" className="nav-link">Logout</NavLink>
                       </DropdownItem>
                     </DropdownMenu>
                   </UncontrolledDropdown>

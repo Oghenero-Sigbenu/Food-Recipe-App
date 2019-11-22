@@ -7,11 +7,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 import './style.css';
 import NavbarApp from './components/common/NavbarApp/NavbarApp'
-import {Home,Login, Auth, Recipes, CreateRecipe, RecipeDetail, Register} from "./components/pages/Index";
+import {Home,Login,  Recipes, CreateRecipe, RecipeDetail, Register} from "./components/pages/Index";
 import Logout from "./components/Logout";
 
 //actions
-import { authAutoLogin, loadAuthUser } from "./store/action/auth"
+import { loadAuthUser } from "./store/action/auth"
 
 export class App extends Component {
 
@@ -38,7 +38,6 @@ export class App extends Component {
       <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <Route path="/logout" component={Logout} />
-        <Route path="/auth" component={Auth} />
         <Route path="/add" component={CreateRecipe} /> 
         <Route path="/recipe" component={Recipes} />
         <Route path="/detail/:id" component={RecipeDetail} />
@@ -47,11 +46,10 @@ export class App extends Component {
     </Switch>
        );
        }
-       const {isAuth,user} =  this.props;
-       console.log(isAuth,user)
+       const {isAuth,user,token} =  this.props;
     return (
       <div className="App">
-          <NavbarApp isAuth={isAuth} user={user}/>
+          <NavbarApp isAuth={isAuth} token={token} user={user}/>
           {routes}  
       </div>
     );
@@ -60,6 +58,7 @@ export class App extends Component {
 
 const mapStateToProps = state => ({
   isAuth: state.auth.token !== null,
+  token: state.auth.token ,
   user: state.auth.user
 
 });

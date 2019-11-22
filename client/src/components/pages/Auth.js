@@ -7,7 +7,6 @@ import {
   FormGroup,
   Label,
   Input,
-  FormText,
   FormFeedback,
   Container,
   Row,
@@ -25,13 +24,9 @@ import {
  class Auth extends Component {
   state = {
     firstname: "",
-    lastname: "",
     username:"",
     email: "",
-    password: "",
-    password2: "",
-    imageurl: "",
-    passwordMatched: false
+    password: ""
   };
 
    onChanged = e => {

@@ -26,3 +26,13 @@ export const TOGGLE_AUTH = "TOGGLE AUTH";
 export const LOAD_AUTH_USER_START = "LOAD_AUTH_USER_START";
 export const LOAD_AUTH_USER_SUCCESS = "LOAD_AUTH_USER_SUCCESS";
 export const LOAD_AUTH_USER_FAILED = "LOAD_AUTH_USER_FAILED";
+
+//comments Types
+export const START = "START";
+export const ADD_COMMENT = "ADD COMMENT";
+export const GET_COMMENTS = "GET COMMENTS";
+export const GET_ONE_COMMENT = "GET ONE COMMENT";
+export const COMMENT_FAILED = "comment FAILED";
+
+export const EMAIL_FAILED = "EMAIL FAILED";
+export const ADD_EMAIL = "ADD EMAIL";

@@ -1,20 +1,59 @@
-import React from 'react';
+import React,{Component} from 'react';
+import { connect } from "react-redux";
 
 import "./Footer.css";
+import Alert from "../Alert";
+import {addEmail} from "../../../store/action/email";
+import { reg } from '../Validation';
 
-const Footer = () => {
+class Footer extends Component {
+    constructor(props) {
+		super(props);
+		this.state = {
+            email: "",
+		  disable: true,
+		  value: "",
+		  show: true
+		}
+		this.getValues = this.getValues.bind(this);
+		this.submit = this.submit.bind(this);
+      };
+      
+      submit(e) {
+		const { email} = this.state;
+		this.props.addEmail({email})
+		this.setState({
+            email: ""
+		})
+	  }
+	
+	  getValues(e, disable) {
+		const { email } = this.state;
+		const { value, name } = e.target;
+		this.setState({
+		  [name]: value,
+		  disable: disable || (email=== "" || !reg.test(email)) ? true : false
+		})
+	  };
+    render () {
+		const { email } = this.state;
+    const { msg, isCreated} = this.props;
     return (
         <>
             <div className="footer">
+                  <h4>Foody Newsletters </h4>
+              {isCreated  ? <Alert classStyle="green" msg={msg} /> : ""}
                 <div className="cs-btn">
-                <input type="email" name="email" />
-                <button className="c-btn">Notify Me</button>
+                <input type="email" name="email" value={email} onChange={this.getValues} />
+                <button className="c-btn" onClick={this.submit}>Subscribe Now</button>
                 </div>
             </div>
             <footer>
-                <p>
-                &copy; 2019 Designed Oghenero Sigbenu. All rights reserverd
-                 </p>
+                 <ul>
+                    <li>
+                    &copy; 2019 Designed Oghenero Sigbenu.
+                    </li>
+                </ul>
                 <ul>
                     <li>
                         Terms of Service
@@ -27,6 +66,15 @@ const Footer = () => {
             </footer>
         </>
     );
+    }
 };
+const mapStateToProps = state => ({
+  isLoading: state.recipe.isLoading,
+  isCreated: state.email.isCreated,
+  msg: state.email.msg
+  });
 
-export default Footer;
+export default connect(
+  mapStateToProps,
+ {addEmail}
+)( Footer);

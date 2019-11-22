@@ -10,9 +10,12 @@ Comment.init({
         type: Sequelize.STRING(),
         allowNull: false
     },
-}, {sequelize});
+}, {sequelize,sequelize,
+    modelName: 'comment',
+    freezeTableName: true,});
 
-// User.hasMany(Comment);
-// Recipes.hasMany(Comment);
+Recipes.hasMany(Comment);
+Comment.belongsTo(User);
+Comment.belongsTo(Recipes);
 
 module.exports = Comment;
