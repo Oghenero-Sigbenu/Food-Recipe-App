@@ -1,4 +1,4 @@
-import * as types from "../action/types";
+import { CLEAR, START, LOAD_AUTH_USER_SUCCESS,TOGGLE_AUTH,LOGOUT_SUCCESS,AUTH_START,AUTH_FAILED, AUTH_SUCCESS,LOGINFAILED, LOAD_AUTH_USER_START,LOGOUT, SET_AUTH_CODE, GROUP_JOINED, GROUP_CREATED, SET_IMG } from "../action/types";
 
 // const initialState ={
 //     token: localStorage.getItem("token"),
@@ -8,40 +8,49 @@ import * as types from "../action/types";
 //     error: null,
 //     isLoggedin:  localStorage.getItem('token') ? true : false,
 // };
-const token = localStorage.myToken;
-const checkToken = token != null ? true : false;
 
+// const token = localStorage.mtoken;
+
+// const checkToken = token ? true : false;
 const initialState = {
-  token,
-  isLoggedIn: checkToken,
-  user: JSON.parse(localStorage.getItem('user')),
-  isLoading: false
+    token: localStorage.getItem("token"),
+    isLoggedIn: localStorage.getItem('token') ? true : false,
+    user: JSON.parse(localStorage.getItem('user')),
+    isLoading: false,
 }
-
+// console.log(token)
 
 const reducer = (state = initialState, action) => {
     const { type, payload } = action;
     switch (type) {
-        case types.AUTH_START:
-        case types.LOAD_AUTH_USER_START: 
+        case AUTH_START:
+        case LOAD_AUTH_USER_START:
             return {
                 ...state,
-                isLoading: true
+                isLoading: payload.isLoading
             };
-        case types.AUTH_SUCCESS:
+        case AUTH_SUCCESS:
             return {
                 ...state,
-                token:payload.token,
-                user:payload.user,
+                token: payload.token,
+                user: payload.user,
                 userId: payload.userId,
-                isLoading: false,
+                isLoading: false, 
                 isLoggedIn: true,
                 error: null,
+                msg: payload.msg
             };
-        case types.AUTH_FAILED:
-        case types.LOGOUT_SUCCESS:
-                localStorage.removeItem("token");
-                localStorage.removeItem("userId");
+        case LOGINFAILED:
+            return {
+                ...state,
+                msg: payload,
+                isLoading: false
+            };
+        case AUTH_FAILED:
+        case LOGOUT_SUCCESS:
+            // delete localStorage.mtoken;
+            localStorage.removeItem("user");
+            localStorage.removeItem("token");
             return {
                 ...state,
                 token: null,
@@ -50,20 +59,20 @@ const reducer = (state = initialState, action) => {
                 isLoading: false,
                 error: action.error
             }
-        case types.TOGGLE_AUTH:
+        case TOGGLE_AUTH:
             return {
                 ...state,
                 isLogin: !state.isLogin
-      };
-      case types.LOAD_AUTH_USER_SUCCESS:
-			return {
-				...state,
-				user: action.user,
-				isLoading: false
             };
-            default:
+        case LOAD_AUTH_USER_SUCCESS:
+            return {
+                ...state,
+                user: action.user,
+                isLoading: false
+            };
+        default:
             return state;
-    }
+    } 
 };
 
 export default reducer;

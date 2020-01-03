@@ -66,7 +66,7 @@ exports.getUserRecipes = (req,res,next)=>{
     }))
 }
 
-exports.postAddRecipe = (req, res, next) => {
+exports.postAddRecipe = (req, res, next) => { 
     const { title, description, steps, ingredients,UserId } = req.body;
     console.log("btur ")
     let imageurl;

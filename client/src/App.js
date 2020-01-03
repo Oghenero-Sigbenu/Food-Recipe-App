@@ -9,16 +9,17 @@ import './style.css';
 import NavbarApp from './components/common/NavbarApp/NavbarApp'
 import {Home,Login,  Recipes, CreateRecipe, RecipeDetail, Register} from "./components/pages/Index";
 import Logout from "./components/Logout";
+import Footer from "../src/components/common/Footer/Footer";
 
 //actions
-import { loadAuthUser } from "./store/action/auth"
+import { auth } from "./store/action/auth"
 
 export class App extends Component {
 
   componentDidMount = () => {
-    // this.props.onAutoLogin();
+    // this.props.auth();
     if(this.props.isAuth) {
-      this.props.onLoadAuthUser();
+      // this.props.loadAuthUser();
     }
   }
   render() {
@@ -51,6 +52,7 @@ export class App extends Component {
       <div className="App">
           <NavbarApp isAuth={isAuth} token={token} user={user}/>
           {routes}  
+          {/* <Footer/> */}
       </div>
     );
   }
@@ -58,16 +60,17 @@ export class App extends Component {
 
 const mapStateToProps = state => ({
   isAuth: state.auth.token !== null,
+  isAuth: state.auth.isLoggedIn,
   token: state.auth.token ,
   user: state.auth.user
 
 });
 
-const mapDispatchToProps = dispatch => ({
-  // onAutoLogin: () => dispatch(authAutoLogin()),
-  onLoadAuthUser: () => dispatch(loadAuthUser())
-});
+// const mapDispatchToProps = dispatch => ({
+//   // onAutoLogin: () => dispatch(authAutoLogin()),
+//   // onLoadAuthUser: () => dispatch(loadAuthUser())
+// });
 
 export default connect(
       mapStateToProps,
-      mapDispatchToProps)(App);
+     {auth} )(App);

@@ -13,7 +13,7 @@ const route = express.Router();
 route.get("/all", recipeControllers.getAllRecipes)
 route.get("/:id", recipeControllers.getRecipeById)
 route.get("/user/recipes",authenticate, recipeControllers.getUserRecipes)
-route.delete("/delete/:id",authenticate, recipeControllers.deleteRecipe)
+route.get("/delete/:id",authenticate, recipeControllers.deleteRecipe)
 route.get("/edit/:id",authenticate, recipeControllers.getRecipeById)
 route.put("/edit/:id",authenticate, upload.single('imageurl'), recipeControllers.updateRecipe)
 route.post("/post",  upload.single('imageurl'), recipeControllers.postAddRecipe)

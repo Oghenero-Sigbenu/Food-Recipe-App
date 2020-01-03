@@ -25,8 +25,6 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    // const { isLoggedIn } = this.props;s
-     
   }
 
   navigate(path) {
@@ -40,7 +38,13 @@ class Login extends Component {
 
   submit() {
     const { email, password } = this.state;
-    this.props.login({email, password}, this.navigate)
+    this.props.login({email, password})
+    this.setState({
+      show: false
+    })
+    setTimeout(() => {
+      this.props.history.push("/");
+    }, 500);
   }
 
   getValue(title, value, disable) {
@@ -92,4 +96,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { login})(Login);
+export default connect(mapStateToProps,{login} )(Login);

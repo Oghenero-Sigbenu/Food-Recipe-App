@@ -48,7 +48,7 @@ class RecipeDetail extends Component {
 		})
 	};
 	render() {
-		const { recipe } = this.props;
+		const { recipe, isAuth } = this.props;
 		const { comment } = this.state;
 		return (
 			<>
@@ -108,6 +108,7 @@ class RecipeDetail extends Component {
 												))}
 											</div>
 										</div>
+										{isAuth ?
 										<div className="comment-footer">
 											<input type="text" name="comment" placeholder="type your comments....." value={comment} onChange={this.getValues}></input>
 											<button className="send" type="submit" onClick={this.submit}>
@@ -115,13 +116,14 @@ class RecipeDetail extends Component {
 												<span>Add</span>
 											</button>
 										</div>
+										: ""}
 									</div>
 								</>
 							)}
 					</>
 				)}
 			</Container>
-				<Footer/>
+				{/* <Footer/> */}
 				</>
 		)
 	}

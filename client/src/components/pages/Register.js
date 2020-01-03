@@ -27,10 +27,6 @@ class Register extends Component {
     this.navigate = this.navigate.bind(this);
   }
 
-  componentDidMount() {
-    
-  }
-
   navigate(path) {
     this.setState({
       show: false

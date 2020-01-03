@@ -47,16 +47,21 @@ exports.login = (req, res, next) => {
 
 
 exports.getCurrentUser = (req, res, next) => {
-	const userId = req.id;
-	User.findByPk(userId, {
-		attributes: { exclude: ["password", "updatedAt"] }
-	})
-		.then(user => {
-			res.json(user);
-		})
-		.catch(error =>
-			res
-				.status(500)
-				.json({ msg: err.message || "Something went wrong while fetching the user", error })
-		);
-};
+    const userId = req.userId;
+    User.findOne({
+      where: {
+        id: userId
+      },
+      include: [{
+        all: true
+      }]
+    })
+      .then(user => {
+        res.json(user);
+      })
+      .catch(error =>
+        res
+          .status(500)
+          .json({ msg: "Something went wrong while fetching the user", error })
+      );
+  };

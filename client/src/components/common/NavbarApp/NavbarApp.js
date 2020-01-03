@@ -25,9 +25,12 @@ class AppNavbar extends Component {
 			        isOpen: !prevState.isOpen
 		            }));
 	                };
+componentDidMount() {
 
+}
     render() {
 		const {user,isAuth} = this.props;
+		console.log(user, isAuth)
 		return (
 			<div className="new-nav">
 				<Navbar expand="md" className="mb-5 newN nav">
@@ -47,13 +50,14 @@ class AppNavbar extends Component {
                                        Recipes
                                     </NavLink>
                                     </NavItem>
-                                    {isAuth && (
+                                    {isAuth ?
                                     <NavItem>
 									<NavLink to="/add" className="nav-link">
 										Add Recipe
 									</NavLink>
 								    </NavItem>
-							         )} 
+									: ""
+							         } 
 							        {/* <NavItem> */}
 									{isAuth ? (
                   <UncontrolledDropdown nav inNavbar>

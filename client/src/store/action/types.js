@@ -26,6 +26,7 @@ export const TOGGLE_AUTH = "TOGGLE AUTH";
 export const LOAD_AUTH_USER_START = "LOAD_AUTH_USER_START";
 export const LOAD_AUTH_USER_SUCCESS = "LOAD_AUTH_USER_SUCCESS";
 export const LOAD_AUTH_USER_FAILED = "LOAD_AUTH_USER_FAILED";
+export const LOGINFAILED = "LOGIN FAILED";
 
 //comments Types
 export const START = "START";

@@ -1,102 +1,96 @@
-import axios from "../../utils/axiox.base"                                                                                                                                                                                                                                      
+import axios from "../../utils/axiox.base"
 import * as types from "./types"
 
 export const authStart = () => ({
-    type: types.AUTH_START
-  });
-
- export const authSuccess =(token, userId, user) => ({
-    type: types.AUTH_SUCCESS,
-    token,
-    userId,
-    user
-
- }); 
-
- export const authFailed = error => ({
-    type: types.AUTH_FAILED,
-    error
- });
-
- export const auth = (authData, callback) => {
-    return (dispatch) => {
-      dispatch(authStart())
-      axios.post("/user/", authData)
-        .then(res => {
-          const {token, user} = res.data; 
-          const userId = user.id;
-          localStorage.myToken = token;
-		  localStorage.setItem("user", JSON.stringify(user));
-		  dispatch(authSuccess(token, userId, user))
-		  callback('/');
-        })
-        .catch(err => dispatch(authFailed(err)));
-      }    
- }
-
- export const login = (authData, callback) => {
-   return (dispatch) => {
-	 dispatch(authStart())
-	 axios.post("/user/login", authData)
-	   .then(res => {
-		 const {token, user} = res.data; 
-		 const userId = user.id;
-		 localStorage.myToken = token;
-		 localStorage.setItem("user", JSON.stringify(user));
-		 dispatch(authSuccess(token, userId, user))
-		//  callback('/');
-	   })
-	   .catch(err => dispatch(authFailed(err)));
-	 }    
-}
-
- export const toggleAuth = () => ({
-    type: types.TOGGLE_AUTH
-  });
-  
-   export const logout = () => ({
-    type: types.LOGOUT_SUCCESS
-  });
-
-// Automatically logs in the user when the user visits the page
-// but only does that if his/her credentials are still valid
-// We call the at the root (App) component.
-export const authAutoLogin = () => (dispatch, getState) => {
-	const { token, userId } = getState().auth;
-	if (!token) {
-		dispatch(logout());
-	} else {
-		dispatch(authSuccess(token, userId));
-	}
-}; 
-
-const loadAuthUserSuccess = user => ({
-	type: types.LOAD_AUTH_USER_SUCCESS,
-	user
+  type: types.AUTH_START, payload: {
+    isloading: true
+  }
 });
 
-export const loadAuthUser = () => (dispatch, getState) => {
-	dispatch({ type: types.LOAD_AUTH_USER_START });
-	const token = getState().auth.token;
-	// Headers
-	const config = {
-		headers: {
-			"Content-Type": "application/json"
-		}
-	};
+export const authSuccess = (token, userId, user, msg) => ({
+  type: types.AUTH_SUCCESS,
+  payload: {
+    token,
+    userId,
+    user,
+    msg
+  }
 
-	// If token, add to headers
-	if (token) {
-		config.headers["x-access-token"] = token;
-	}
-	axios.get("/auth/all", config)
-		.then(res => {
-			dispatch(loadAuthUserSuccess(res.data));
-		})
-		.catch(error =>
-			dispatch({
-				type: types.LOAD_AUTH_USER_FAILED,
-				error: error.message
-			})
-		);
+});
+
+export const authFailed = msg => ({
+  type: types.AUTH_FAILED,
+  payload: msg
+});
+
+export const auth = (authData) => {
+  return (dispatch) => {
+    dispatch(authStart())
+    axios.post("/user/", authData)
+      .then(res => {
+        const { token, user } = res.data;
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(user));
+        dispatch(authSuccess(user, token))
+      })
+      .catch(err => dispatch(authFailed(err)));
+  }
+};
+
+export const logInFailed = (msg) => {
+  return {
+    type: types.LOGINFAILED,
+    payload: msg
+  }
+};
+
+export const login = (authData) => {
+  console.log("token")
+  return (dispatch) => {
+    dispatch(authStart())
+    axios.post("/user/login", authData)
+      .then(res => {
+        const { user, token } = res.data;
+        localStorage.setItem("token", token);
+        console.log(token)
+        localStorage.setItem("user", JSON.stringify(user));
+        dispatch(authSuccess(user, token))
+      })
+      .catch(err => {
+        console.log(err.response)
+
+        // dispatch(logInFailed(err.response.data))
+      })
+  }
+};
+
+
+export const loadAuthUser = (token) => {
+  axios.defaults.headers.common['x-access-token'] = `${token}`;
+  return (dispatch) => {
+    axios.get('/auth/user')
+      .then(
+        res => {
+          localStorage.setItem("user", JSON.stringify(res.data));
+          dispatch(authSuccess(res.data, token))
+          console.log(res.data)
+        }
+      )
+      .catch(
+        error => {
+          if (error.response) {
+            dispatch(logout());
+          } else if (error.request) {
+            dispatch(logout());
+          }
+        }
+      )
+  }
+};
+
+
+export const logout = () => {
+  return {
+    type: types.LOGOUT_SUCCESS
+  }
 };

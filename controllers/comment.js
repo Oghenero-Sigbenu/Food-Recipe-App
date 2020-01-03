@@ -50,4 +50,25 @@ exports.getRecipeComment = (req, res, next) => {
 			.catch((err) => {
 					return res.status(500).json({ msg: "Something went wrong", error: err });
 			})
+};
+
+exports.deleteComment = (req, res, next) => {
+	const id = req.params.id;
+	Comments.findByPk(id)
+	.then((comment ) => {
+		if(comment){
+		comment.destroy()
+		.then((res) =>{
+			res.status(200).json({msg:"deleted succefully" || err.message})
+		})
+		.catch((err) => {
+			console.log(err)
+		})
+	}else{
+		res.status(200).json({msg:"Comment not found" || err.message})
+	}
+	})
+	.catch((err) => {
+		console.log(err)
+	})
 }
