@@ -28,6 +28,7 @@ export const auth = (authData) => {
     dispatch(authStart())
     axios.post("/user/", authData)
       .then(res => {
+        console.log("yes")
         const { token, user } = res.data;
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));

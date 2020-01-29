@@ -34,7 +34,9 @@
 .new-nav{
     /* background: none !important; */
 }
-
+.dropdown-menu{
+    background-color: red;
+}
 .newN{
     /* background: none !important; */
     z-index: 1000;
