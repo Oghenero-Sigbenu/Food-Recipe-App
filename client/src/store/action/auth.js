@@ -1,14 +1,15 @@
 import axios from "../../utils/axiox.base"
-import * as types from "./types"
+import {AUTH_START,AUTH_SUCCESS,AUTH_FAILED,LOGINFAILED,LOGOUT_SUCCESS}  from "./types"
 
 export const authStart = () => ({
-  type: types.AUTH_START, payload: {
+  type: AUTH_START, 
+  payload: {
     isloading: true
   }
 });
 
 export const authSuccess = (token, userId, user, msg) => ({
-  type: types.AUTH_SUCCESS,
+  type: AUTH_SUCCESS,
   payload: {
     token,
     userId,
@@ -19,7 +20,7 @@ export const authSuccess = (token, userId, user, msg) => ({
 });
 
 export const authFailed = msg => ({
-  type: types.AUTH_FAILED,
+  type: AUTH_FAILED,
   payload: msg
 });
 
@@ -40,7 +41,7 @@ export const auth = (authData) => {
 
 export const logInFailed = (msg) => {
   return {
-    type: types.LOGINFAILED,
+    type: LOGINFAILED,
     payload: msg
   }
 };
@@ -59,7 +60,6 @@ export const login = (authData) => {
       })
       .catch(err => {
         console.log(err.response)
-
         // dispatch(logInFailed(err.response.data))
       })
   }
@@ -92,6 +92,6 @@ export const loadAuthUser = (token) => {
 
 export const logout = () => {
   return {
-    type: types.LOGOUT_SUCCESS
+    type: LOGOUT_SUCCESS
   }
 };
