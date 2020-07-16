@@ -9,11 +9,11 @@
 }
 .recipe-cards {
     width: 250px;
-    height: 350px;
+    /* height: 350px; */
     border-radius: 12px;
     margin: 6px;
     margin-bottom: 15px;
-    box-shadow: 0px 0px 10px grey;
+    box-shadow: 0px 1px 1px grey;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -50,11 +50,10 @@
     }
     .recipe-cards {
         width: 46%;
-        height: 250px;
+        /* height: 250px; */
         border-radius: 12px;
         margin: 6px;
         margin-bottom: 15px;
-       
     }
     
     .details{
@@ -75,19 +74,17 @@
         margin: 0 auto;
     }
     .recipe-cards {
-        width: 80%;
-        height: 250px;
+        width: 70%;
+        height: 300px;
         border-radius: 12px;
         margin: 6px;
         margin-bottom: 15px;
        
     }
-    
     .details{
        height: 35%;
        margin-top: 4px;
        margin-left: 10px;
        text-align: left;
-        
     }
 }

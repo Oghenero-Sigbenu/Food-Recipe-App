@@ -15,7 +15,6 @@ exports.getAllRecipes = (req, res, next) => {
     )
         .then(recipe => {
             res.json(recipe)
-            // console.log(recipe)
         })
         .catch(err => res.json({ msg: failed, error: err }))
         };
@@ -68,7 +67,6 @@ exports.getUserRecipes = (req,res,next)=>{
 
 exports.postAddRecipe = (req, res, next) => { 
     const { title, description, steps, ingredients,UserId } = req.body;
-    console.log("btur ")
     let imageurl;
     if(req.path){
                 imageurl = req.file.path;

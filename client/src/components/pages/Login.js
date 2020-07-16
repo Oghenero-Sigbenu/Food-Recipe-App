@@ -87,6 +87,7 @@ class Login extends Component {
 
 const mapStateToProps = (state) => {
   const { user, token, isLoading, msg, isLoggedIn } = state.auth;
+  console.log(user, token, isLoading, msg, isLoggedIn)
   return {
     user,
     token,

@@ -8,7 +8,7 @@ import { Spinner, Container } from "reactstrap";
 
 import { getSingleRecipe } from "../../store/action/recipe";
 import { addComment } from "../../store/action/comment";
-import Footer from "../common/Footer/Footer";
+// import Footer from "../common/Footer/Footer";
 import "../../style.css"
 
 class RecipeDetail extends Component {
@@ -30,10 +30,10 @@ class RecipeDetail extends Component {
 		this.props.getSingleRecipe(recipeId);
 	}
 	submit(e) {
-		const { comment } = this.state;
+		const { comment,user } = this.state;
 		const { userId } = this.props;
 		const id = +this.props.match.params.id;
-		this.props.addComment({ comments: comment, RecipeId: id, UserId: userId })
+		this.props.addComment({ comments: comment, RecipeId: id, UserId: user.id })
 		this.setState({
 			comment: ""
 		})
@@ -49,7 +49,8 @@ class RecipeDetail extends Component {
 	};
 	render() {
 		const { recipe, isAuth } = this.props;
-		const { comment } = this.state;
+		const { comment,user } = this.state;
+		console.log(user,)
 		return (
 			<>
 			<Container>
@@ -68,7 +69,7 @@ class RecipeDetail extends Component {
 											{/* <p>By: {recipe && recipe.User.firstname} </p> */}
 										</div>
 										<div className="text">
-											<div className="up">
+											{/* <div className="up"> */}
 												<div className="description">
 													<h4>Description</h4>
 													{/* <p>{recipe && recipe.steps}</p> */}
@@ -78,7 +79,7 @@ class RecipeDetail extends Component {
 													<h4>Ingredients</h4>
 													<p>{recipe && recipe.ingredients}</p>
 												</div>
-											</div>
+											{/* </div> */}
 											<div className="steps">
 												<h4>Method</h4>
 												<p>{recipe && recipe.steps}</p>
@@ -97,7 +98,8 @@ class RecipeDetail extends Component {
 										</div>
 
 									</div>
-									<div className="act">
+										<div className="comment">
+										<div className="act">
 										<h3>Comments</h3>
 										<div className="activity">
 											<div className="activity-logs">
@@ -110,13 +112,14 @@ class RecipeDetail extends Component {
 										</div>
 										{isAuth ?
 										<div className="comment-footer">
-											<input type="text" name="comment" placeholder="type your comments....." value={comment} onChange={this.getValues}></input>
+											<textarea type="text" name="comment" placeholder="type your comments....." value={comment} onChange={this.getValues}></textarea>
 											<button className="send" type="submit" onClick={this.submit}>
-												<span><FontAwesomeIcon icon={faPaperPlane} /></span>
-												<span>Add</span>
+												<FontAwesomeIcon icon={faPaperPlane} />
+												{/* <span>Add</span> */}
 											</button>
 										</div>
 										: ""}
+									</div>
 									</div>
 								</>
 							)}
@@ -133,7 +136,8 @@ const mapStateToProps = state => ({
 	recipe: state.recipe.recipe,
 	isLoading: state.recipe.isLoading,
 	isAuth: state.auth.token !== null,
-	userId: state.auth.userId
+	userId: state.auth.userId,
+	user: state.auth.user,
 
 });
 

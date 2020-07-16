@@ -1,4 +1,9 @@
-import { CLEAR, START, LOAD_AUTH_USER_SUCCESS, TOGGLE_AUTH, LOGOUT_SUCCESS, AUTH_START, AUTH_FAILED, AUTH_SUCCESS, LOGINFAILED, LOAD_AUTH_USER_START, LOGOUT, SET_AUTH_CODE, GROUP_JOINED, GROUP_CREATED, SET_IMG } from "../action/types";
+import { 
+     LOAD_AUTH_USER_SUCCESS, 
+     TOGGLE_AUTH, LOGOUT_SUCCESS, 
+     AUTH_START, AUTH_FAILED, AUTH_SUCCESS, 
+     LOGINFAILED, LOAD_AUTH_USER_START, 
+    } from "../action/types";
 
 const token = localStorage.getItem("token");
 const checkToken = localStorage.getItem('token') ? true : false;

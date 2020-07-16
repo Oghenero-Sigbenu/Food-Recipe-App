@@ -1,8 +1,8 @@
 .nav{
     /* color: black; */
-    background-color: rgb(251, 14, 14);
+    background-color: red;
     /* box-shadow: 2px 1px 2px 2px gray; */
-    height: 90px;
+    /* height: 90px; */
     color: white;
     font-size: 20px;
     font-weight: 100px;
@@ -21,7 +21,7 @@
     background-color: white; */
     /* font-size: 50px; */
     position: absolute;
-    top: 15px; 
+    top: 0px; 
     left: 70px;
     font-style:italic;
     font-weight: 200px;

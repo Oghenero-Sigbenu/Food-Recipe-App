@@ -116,7 +116,7 @@ class Home extends Component {
           {rendImage}
         </div>
         <div className="title">
-          <button>RECIPES</button>
+          <h3>RECIPES</h3>
         </div>
         {!isLoading ? (
           <div style={{ display: "flex", justifyContent: "center" }}>

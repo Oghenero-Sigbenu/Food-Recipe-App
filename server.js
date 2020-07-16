@@ -24,11 +24,11 @@ const app = express();
 // This parses all json request so we can access
 // its contents via 'req.body' object
 app.use(express.json());
+app.use(express.urlencoded()); 
 app.use(cors());
 
 // Create a static directory for our uploads
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
 //setting a base path
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/recipe", recipeRoutes);

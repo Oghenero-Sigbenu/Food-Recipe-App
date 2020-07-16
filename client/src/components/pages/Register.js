@@ -45,6 +45,7 @@ class Register extends Component {
     setTimeout(() => {
       this.props.history.push("/");
     }, 500);
+    console.log(name, email,  username, password)
   }
 
   getValue(title, value, disable) {
@@ -87,6 +88,7 @@ class Register extends Component {
 
 const mapStateToProps = (state) => {
   const { isLoggedIn, isLoading,token,msg } = state.auth;
+  console.log(token, isLoading, msg, isLoggedIn)
   return {
     isLoggedIn,
     isLoading,

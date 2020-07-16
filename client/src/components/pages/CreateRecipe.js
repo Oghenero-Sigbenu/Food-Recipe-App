@@ -36,7 +36,6 @@ class CreateRecipe extends Component {
 
    
     onSubmit = (e) => {
-        console.log(this.props.user)
         e.preventDefault();
         const formData = {
                         title: this.state.title, 
@@ -47,7 +46,6 @@ class CreateRecipe extends Component {
                         UserId: this.props.user.id,
                         token: this.props.token,
                         }
-                        console.log(formData)
     		this.props.addRecipe(formData) ;
 };
 
@@ -76,7 +74,7 @@ const selectStyle = {width: "100%"}
                             onChange={this.handleInputChange}/>
                     </FormGroup>
                     <FormGroup>
-                        <Label for="select"><h3>Category:</h3> </Label>
+                        <Label><h3>Category:</h3> </Label>
                         <Input type="select" name="select" style={selectStyle}>
                             <option>African Dishes</option>
                             <option>Breakfast Recipes</option>
@@ -106,7 +104,7 @@ const selectStyle = {width: "100%"}
                         />
                     </FormGroup>
                     <FormGroup>
-                        <label for="imageurl"><h3>Image Upload</h3></label>
+                        <label ><h3>Image Upload</h3></label>
                         <input type="file"
                                  name="imageurl"
                                  id = "imageurl"

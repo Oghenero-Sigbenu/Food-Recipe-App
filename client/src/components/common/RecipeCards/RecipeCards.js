@@ -27,6 +27,7 @@ const RecipeCards = ({ recipes, isAuth, user, click }) => {
 					{isAuth ?
 						<>
 							<div className="recipe-actions">
+								<hr/>
 								{/* <i class="far fa-bookmark"></i>  */}
 								{/* <button><i className="fas fa-bookmark"></i></button> */}
 								{/* <button onClick={click}><i className="far fa-heart">12</i></button> */}

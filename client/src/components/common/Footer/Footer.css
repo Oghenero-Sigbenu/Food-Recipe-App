@@ -7,7 +7,7 @@
     width: 100%;
     height: 300px;
     margin: 0 auto;
-    background-color:  rgb(243, 241, 140);
+    /* background-color:  rgba(243, 8, 27, 0.521); */
     margin-top: 20px;
     text-align:center ;
     background-image: url("../../../files/orange.png"),url("../../../files/Red-Apple.png"), url("../../../files/tomato.png");
@@ -30,28 +30,11 @@
     padding-top: 15px;
     border-bottom: 2px solid rgb(80, 167, 119);
 }
+li{
+    list-style: none;
 
+}
 .company li {
-    list-style: none;
-    padding: 10px;
-    color: rgb(164, 170, 178);
-}
-
-.information h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
-}
-
-.information h2::after {
-    content: "";
-    display: block;
-    width: 50%;
-    padding-top: 15px;
-    border-bottom: 2px solid rgb(80, 167, 119);
-}
-
-.information li {
-    list-style: none;
     padding: 10px;
     color: rgb(164, 170, 178);
 }
@@ -66,40 +49,10 @@
     margin-bottom: 10px;
 }
 
-.subscribe h2::after {
-    content: "";
-    display: block;
-    width: 20%;
-    padding-top: 15px;
-    border-bottom: 2px solid rgb(80, 167, 119);
-    margin-left: 82px;
-}
-
-.subscribe input {
-    border: 1px solid #a5a5a5;
-    border-radius: 40px;
-    padding: 15px 83px;
-    padding-left: 15px;
-    padding-right: 15px;
-    margin: 10px;
-}
-
-.subscribe button {
-    border: 1px solid #a5a5a5;
-    border-radius: 40px;
-    padding: 15px 83px;
-    background-color: rgb(80, 167, 119);
-    color: white;
-    margin: 10px;
-    background-color: rgb(49, 196, 233);
-
-}
-
 footer {
     background-color: black;
     border-top: 1px solid rgb(241, 241, 241);
     color: white;
-    padding: 15px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -112,97 +65,85 @@ footer li {
 }
 .cs-btn{
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     width: 40%;
+    /* padding: .3em .1em; */
+    border:1px solid rgb(156, 149, 149);
     margin: 50px auto;
+    border-radius: 25px;
   }
   .cs-btn input{
-    width: 70%;
-    border-radius: 5px;
+    width: 50%;
+    border-radius: 25px;
     border: none;
-    padding:10px; 
-    background-color: #dbd4d4;
+    /* padding:10px;  */
+    outline: none;
   }
    .c-btn{
-    width: 30%;
+    /* width: 30%; */
     /* min-width: 300px; */
     vertical-align: middle; 
-    padding: 10px;
-    border-radius: 5px;
-    background: none;
+    padding: .3em 1em;
+    border-radius: 25px;
     border: none;
     cursor: pointer;
     background: red;
     color: white;
-    font-size: 16px;
-    font-family: "Bold";
+    font-size: 14px;
   } 
   
   @media screen and  (max-width:600px){
-    .footer {
-          height: 300px;
-         background-size:40px 60px;
-         padding: 40px !important;
-      }
-    footer {
-        flex-direction: column;
-        text-align: center;
-    }
-    footer ul{
-        align-content: center;
-        padding: 2px !important;
-        text-align: center;
-   }
-    footer li {
-        padding: 10px;
-        margin-top: 20px;
-        text-align: center;
-
-    }
     .cs-btn{
-        display: flex;
-        flex-wrap: wrap;
-        width: 80% !important;
+        width: 90%;
+        /* margin: 50px auto; */
+      }
+      .c-btn{
+          width: 50%;
+    padding: .15em 3em;
+
       }
       .cs-btn input{
-        width: 100%;
-        
+        /* width: 100%; */
+        padding: 10px;
       }
-       .c-btn{
-        width: 100%;
-      } 
+      .footer{
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      .footer {
+         background-size: 30px 30px;
+         /* position: absolute; */
+         /* bottom: 0; */
+      }
+      footer{
+          flex-direction: column;
+          justify-content: center !important;
+      }
+   
+    footer ul{
+        width: 80%;
+        display: flex;
+        margin-bottom: 0 !important;
+        justify-content: space-around;
+    }
   }
 
   @media screen and  (min-width:600px) and (max-width:1200px){
-    .footer {
+    .cs-btn{
+      width: 70%;
+      /* margin: 50px auto; */
+    }
+    .c-btn{
+        width: 50%;
+    padding: .15em 3em;
+    }
+    .cs-btn input{
+      /* width: 100%; */
+      padding: 10px;
+    }/* .footer {
           height: 300px;
          background-size:60px 70px;
          padding: 40px !important;
-      }
-    /* footer {
-        flex-direction: column;
-        text-align: center;
-    }
-    footer ul{
-        align-content: center;
-        padding: 2px !important;
-        text-align: center;
-   }
-    footer li {
-        padding: 10px;
-        margin-top: 20px;
-        text-align: center;
-
-    } */
-    .cs-btn{
-        display: flex;
-        flex-wrap: wrap;
-        width: 60% !important;
-      }
-      .cs-btn input{
-        width: 60%;
-        
-      }
-       .c-btn{
-        width: 40%;
-      } 
+      } */
   }
