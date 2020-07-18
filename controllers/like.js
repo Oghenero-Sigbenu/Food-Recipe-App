@@ -29,7 +29,7 @@ exports.postLike = (req, res, next) => {
 		.then(recipe => {
 			Like.create({
 				UserId,
-				RecipeId, likes = likes + 1 
+				RecipeId, likes: likes + 1 
 			})
 				.then((like => {
 					res.json({ like, success: true })

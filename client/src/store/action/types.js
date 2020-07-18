@@ -7,7 +7,8 @@ export const GET_RECIPE_INIT = "GET RECIPE INIT";
 export const ADD_RECIPE = "ADD RECIPE";
 export const ADD_RECIPE_SUCCESS = "ADD RECIPE SUCCESS";
 export const LOADING = "LOADING";
-export const ERROR_OCCURED = "ERROR_OCCURED";export const DELETE_RECIPE_INIT = "DELETE RECIPE INIT";
+export const ERROR_OCCURED = "ERROR_OCCURED";
+export const DELETE_RECIPE_INIT = "DELETE RECIPE INIT";
 export const DELETE_RECIPE_SUCCESS = "DELETE RECIPE SUCCESS";
 export const EDIT_RECIPE_DONE = "EDIT RECIPE DONE";
 export const EDIT_RECIPE_INIT = "EDIT RECIPE INIT";
@@ -37,3 +38,9 @@ export const COMMENT_FAILED = "comment FAILED";
 
 export const EMAIL_FAILED = "EMAIL FAILED";
 export const ADD_EMAIL = "ADD EMAIL";
+
+//like Types
+export const ADD_LIKE = "ADD LIKE";
+export const GET_LIKES = "GET LIKES";
+export const GET_RECIPE_LIKES = "GET RECIPE LIKE";
+export const FAILED = "FAILED";

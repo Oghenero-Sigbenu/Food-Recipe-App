@@ -8,6 +8,7 @@ import { Spinner, Container } from "reactstrap";
 
 import { getSingleRecipe } from "../../store/action/recipe";
 import { addComment } from "../../store/action/comment";
+import { addLike } from "../../store/action/like";
 // import Footer from "../common/Footer/Footer";
 import "../../style.css"
 
@@ -38,7 +39,12 @@ class RecipeDetail extends Component {
 			comment: ""
 		})
 	}
-
+	like(){
+		const { comment } = this.state;
+		const { user } = this.props;
+		const id = +this.props.match.params.id;
+		this.props.addComment({ likes: comment, RecipeId: id, UserId: user.id, username: user.firstname})
+	}
 	getValues(e, disable) {
 		const { comment } = this.state;
 		const { value, name } = e.target;
@@ -48,8 +54,9 @@ class RecipeDetail extends Component {
 		})
 	};
 	render() {
-		const { recipe, isAuth ,user} = this.props;
+		const { recipe, isAuth} = this.props;
 		const { comment } = this.state;
+		console.log(recipe)
 		return (
 			<>
 			<Container>
@@ -65,7 +72,7 @@ class RecipeDetail extends Component {
 									<div className="detail">
 										<div className="recipe-image">
 											<img src={`http://localhost:5000/${recipe && recipe.imageurl}`} alt="recipe" />
-											<p>By: {recipe && recipe.User.firstname} </p><small>Created: <Moment fromNow>{recipe && recipe.updatedAt}</Moment></small>
+											<p>By: {recipe && recipe.User.firstname} </p><small>Created: <Moment format="DD MMM YY">{recipe && recipe.updatedAt}</Moment></small>
 										</div>
 										<div className="text">
 												<div className="description">
@@ -84,8 +91,8 @@ class RecipeDetail extends Component {
 											{/* <h5>Created <Moment fromNow>{recipe && recipe.updatedAt}</Moment></h5> */}
 											{isAuth ?
 												<div className="actions">
-													<i className="fas fa-bookmark"></i>
-													<i className="far fa-heart">12</i>
+													{/* <i className="fas fa-bookmark"></i>
+													<i className="far fa-heart">12</i> */}
 													<i className="far fa-comment-alt">{recipe && recipe.comments.length}</i>
 												</div>
 												:
@@ -102,7 +109,7 @@ class RecipeDetail extends Component {
 													<div className="activity-card" key={comment.id}>
 														<h5>{comment.username}</h5>
 														<p>{comment.comments}</p>
-														<small><Moment fromNow>{comment.updatedAt}</Moment></small>
+														<small><Moment format="DD MMM YY">{comment.createdAt}</Moment></small>
 													</div>
 												))}
 											</div>
@@ -138,4 +145,4 @@ const mapStateToProps = state => ({
 
 });
 
-export default connect(mapStateToProps, { addComment, getSingleRecipe })(RecipeDetail);
+export default connect(mapStateToProps, { addComment, getSingleRecipe, addLike })(RecipeDetail);

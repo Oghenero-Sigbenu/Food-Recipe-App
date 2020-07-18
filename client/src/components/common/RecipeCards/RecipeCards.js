@@ -27,11 +27,11 @@ const RecipeCards = ({ recipes, isAuth, user, click }) => {
 					{isAuth ?
 						<>
 							<div className="recipe-actions">
-								<hr/>
+								<hr></hr>
 								{/* <i class="far fa-bookmark"></i>  */}
 								{/* <button><i className="fas fa-bookmark"></i></button> */}
 								{/* <button onClick={click}><i className="far fa-heart">12</i></button> */}
-								<NavLink to={`detail/` + recipe.id}><i className="far fa-comment-alt"></i></NavLink>
+								<NavLink to={`detail/` + recipe.id}>{recipe.comments.length} <i className="far fa-comment-alt"></i></NavLink>
 							</div>
 						</>
 						: ""

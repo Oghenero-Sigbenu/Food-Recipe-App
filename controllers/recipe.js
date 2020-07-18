@@ -29,7 +29,7 @@ exports.getRecipeById = (req, res, next) => {
         include: [
             {
                 all: true,
-                attributes: { exclude:["password","createdAt","updatedAt"]}
+                attributes: { exclude:["password","updatedAt"]}
             }
         ]
     })
