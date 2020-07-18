@@ -1,142 +1,52 @@
 const bcrypt = require('bcryptjs');  //importing bcryptjs
 const jwt = require("jsonwebtoken"); //importing jsonwebtoken
+const dotenv = require("dotenv");
 
+// get config vars
+dotenv.config();
 const User = require("../models/user"); //importing the models
 
-// //user signUp 
-// exports.addUser = (req, res, next) => {
-// 	const { firstname, email,
-// 		username, password } = req.body;
-// 	console.log("love");
-// 	// if either of the fields are empty render status(404)
-// 	// else find a user by the email
-// 	if (!firstname || !email || !username || !password) {
-// 		res.status(400).json("All fields are required")
-// 	}
-// 	//search if the email already exist
-// 	User.findOne({
-// 		where: {
-// 			email
-// 		}
-// 	})
-// 		.then(user => {
-// 			if (user) {
-// 				return res.status(400).json({ msg: error.message || "User already exists" });
-// 			}
-// 			else {
-
-// 				//pasword is hashed
-// 				let hashedPassword;
-// 				try {
-// 					const salt = bcrypt.genSaltSync(10);
-// 					hashedPassword = bcrypt.hashSync(password, salt);
-// 				} catch (error) {
-// 					throw error;
-// 				}
-// 				//user is created
-// 				User.create({
-// 					firstname, email,
-// 					username, password: hashedPassword,
-// 				})
-
-// 					.then(user => {
-// 						//logins in the user and assigns a token
-// 						// const token = 
-// 						jwt.sign(
-// 							{ id: user.id }, process.env.AUTH_SECRET_KEY, { expiresIn: "24h" }, (err, token) => {
-// 								return res.json({
-// 									token,
-// 									user
-// 								});
-
-// 							});
-// 						// const authenticatedUser = {
-// 						//     id: user.id,
-// 						//     firstname: user.firstname,
-// 						//     lastname: user.lastname,
-// 						//     email: user.email,
-// 						//     username: user.username
-// 						//     } 
-// 					})
-// 					.catch(err => res.json({ msg: err.message || "no" }))
-
-// 			}
-// 		})
-// 		.catch(err => res.json({ msg: err.message || "failed to create account" }))
-
-// };
-
-exports.addUser = (req, res, next) => {
-	const { firstname, email, username, password } = req.body;
-  
-	if (!firstname || !email || !username  || !password) {
+exports.signup = (req, res, next) => {
+	const {firstname, email, username, password } = req.body;
+		if (!firstname || !email || !username  || !password) {
 	  res.status(400).json({ msg: "All Fields are required" })
-	} else {
-		console.log(email)
+		} else {
 	  User.findOne({
 		where: {
-		  username
+		 email
 		}
 	  })
-		.then((userUsername) => {
-			if (userUsername) {
-				console.log("email exist ")
-			return res.status(400).json({ msg: "Username already exists" })
-		  } else {
-			// User.findAll({
-			//   where: {
-			// 	email
-			//   }
-			// })
-			//   .then((userEmail) => {
-			// 	if (userEmail.length > 0) {
-			// 		console.log("email exist ")
-			// 	  return res.status(400).json({ msg: "Email already exists", data: userEmail })
-				// } else {
-				  let hashedPassword;
-				  try {
-					const salt = bcrypt.genSaltSync(10);
-					hashedPassword = bcrypt.hashSync(password, salt);
-				  } catch (error) {
-					throw error;
-				  }
-				  User.create({
-					firstname ,
-					email,
-					password: hashedPassword,
-					username,
-				  })
-					.then((user) => {
-					  jwt.sign(
-						{ userId: user.id },
-						process.env.AUTH_SECRET_KEY,
-						{ expiresIn: "1h" },
-						(err, token) => {
-						//   welcomeMail(req, res, next);
-						  res.status(201).json({
-							token,
-							user,
-							msg:"Success"
-						  })
+	  .then(emailExist => {
+		if(emailExist){
+		}else{
+			let hashedPassword;
+                try{
+                    const salt = bcrypt.genSaltSync(10);
+                    hashedPassword = bcrypt.hashSync(password, salt);
+                }catch(error){
+                    throw error;
+				}
+				User.create({
+					firstname, email, username, password: hashedPassword
+				})
+				.then(user => {
+					jwt.sign(
+                        { id: user.id },process.env.AUTH_SECRET_KEY,
+                        { expiresIn: "5h"}, (err,token) => {
+                            return res.status(200).json({
+                                token,
+                                user
 						})
 					})
-					.catch((err) => {
-					  res.status(500).json({ msg: "error occured", err })
-					})
-				// }
-			//   })/
-			  .catch((err) => {
-				res.status(500).json({ msg: err })
-  
-			  })
-		  }
-		})
-		.catch((err) => {
-		  res.status(500).json({ msg: err })
+				})
+				.catch(err => res.json({ msg: err.message || "Not created"}))
+		}
+	  })
+	  .catch((err) => {
+			res.status(500).json({ msg: "error occured", err })
 		})
 	}
-  }
-
+}
 exports.login = (req, res, next) => {
 	const { email, password } = req.body;
 	if (!email || !password) {
@@ -171,11 +81,9 @@ exports.login = (req, res, next) => {
 							}
 						);
 					})
-					.catch(err => {
-						next(err);
-					});
+					.catch(err => res.json({ msg: "failed", error: err }))
 			})
-			.catch(err => next(err));
+			.catch(err => res.json({ msg: "failed", error: err }))
 	}
 };
 

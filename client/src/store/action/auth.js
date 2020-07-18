@@ -29,8 +29,10 @@ export const auth = (authData) => {
     dispatch(authStart())
     axios.post("/user/", authData)
       .then(res => {
-        console.log("yes")
+        console.log(res.data)
+        console.log(res)
         const { token, user } = res.data;
+        console.log(token,user,"authc")
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));
         dispatch(authSuccess(user, token))
@@ -54,7 +56,7 @@ export const login = (authData) => {
       .then(res => {
         const { user, token } = res.data;
         localStorage.setItem("token", token);
-        console.log(token)
+        console.log(token,user,"login")
         localStorage.setItem("user", JSON.stringify(user));
         dispatch(authSuccess(user, token))
       })

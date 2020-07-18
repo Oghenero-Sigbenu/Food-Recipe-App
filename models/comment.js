@@ -10,6 +10,10 @@ Comment.init({
         type: Sequelize.STRING(),
         allowNull: false
     },
+    username :{
+        type: Sequelize.STRING(),
+        allowNull: false
+    },
 }, {sequelize,sequelize,
     modelName: 'comment',
     freezeTableName: true,});

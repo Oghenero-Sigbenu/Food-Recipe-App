@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
 import {
 	Collapse,
 	Navbar,
@@ -14,7 +15,8 @@ import {
 	// NavLink as BstNavLink,
 } from "reactstrap";
 import "./NavbarApp.css"
-
+//actions
+import { auth } from "../../../store/action/auth"
 class AppNavbar extends Component {
 	state = {
 		    isOpen: false
@@ -29,8 +31,8 @@ componentDidMount() {
 
 }
     render() {
-		const {user,isAuth} = this.props;
-		console.log(user, isAuth)
+		const {user,isAuth, token} = this.props;
+		console.log(user, isAuth,"yes",token)
 		return (
 			<div className="new-nav">
 				<Navbar expand="md" className="mb-5 newN nav">
@@ -62,7 +64,7 @@ componentDidMount() {
 									{isAuth ? (
                   <UncontrolledDropdown nav inNavbar>
                     <DropdownToggle nav caret>
-                      {user && user.username}
+                      {this.props.user && this.props.user.username}
                     </DropdownToggle>
                     <DropdownMenu right>
                       <DropdownItem>
@@ -88,4 +90,13 @@ componentDidMount() {
 	}
 }
 
-export default AppNavbar;
+const mapStateToProps = state => ({
+	isAuth: state.auth.token !== null,
+	token: state.auth.token ,
+	user: state.auth.user
+  
+  });
+  
+  export default connect(
+		mapStateToProps,
+	   {auth} )(AppNavbar);

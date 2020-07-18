@@ -76,7 +76,7 @@ exports.postAddRecipe = (req, res, next) => {
     //     res.json({ msg: "All fields are required" })
     // }
     // else {
-            User.findByPk(UserId)
+       User.findByPk(UserId)
             .then(user => {
                 Recipes.create({ title, description, steps, ingredients, imageurl, UserId })
                 .then(recipe => {
@@ -85,9 +85,9 @@ exports.postAddRecipe = (req, res, next) => {
                 .catch(err => res.json({ msg: err.message || "failed to create" }))
                  })
             .catch(err => res.json({ msg: err.message || "User not found" }))
-                // }
-
                 }
+
+                // }
 
 //delete a single recipe by id
 exports.deleteRecipe = (req, res, next) => {

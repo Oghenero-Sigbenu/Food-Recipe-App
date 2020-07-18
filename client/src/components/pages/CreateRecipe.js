@@ -46,7 +46,8 @@ class CreateRecipe extends Component {
                         UserId: this.props.user.id,
                         token: this.props.token,
                         }
-    		this.props.addRecipe(formData) ;
+            this.props.addRecipe(formData) ;
+            console.log(formData, this.props.id, this.props.user)
 };
 
 render(){

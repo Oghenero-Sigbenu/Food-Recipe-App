@@ -7,8 +7,9 @@ const Recipes = require("./recipe");
 class Like extends Sequelize.Model { }
 Like.init({
 	likes: {
-		type: Sequelize.INTEGER,
-		allowNull: false
+		type: Sequelize.INTEGER(),
+		allowNull: false,
+		defaultValue: 0
 	}
 }, { sequelize });
 

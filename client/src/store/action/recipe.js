@@ -87,7 +87,9 @@ export const addRecipe = recipeData => {
         formData.append("steps", recipeData.steps);
         formData.append("ingredients", recipeData.ingredients);
         formData.append("imageurl", recipeData.imageurl);
+        formData.append("UserId", recipeData.UserId);
     // }      
+    console.log(formData)
         axios.post("recipe/post", formData, config)
             .then(res => {
                 dispatch(addRecipeSuccess(res.data))

@@ -33,6 +33,7 @@ exports.login = (req, res, next) => {
         //login the user if it matches the password then assign a token
         jwt.sign({userId: user.id}, process.env.AUTH_SECRET_KEY, {expiresIn:"24h"}, (err, token) => {
            res.json({token, user})
+           console.log(token, user)
         })
     })
 

@@ -13,14 +13,14 @@ exports.getComments = (req, res, next) => {
 
 //post a comment
 exports.addComment = (req, res, next) => {
-  const {comments,RecipeId,UserId} = req.body;
+  const {comments,RecipeId,UserId,username} = req.body;
    Comments.findOne({
        where:{RecipeId}
     })
     .then(commentData => {
 			// if(!commentData){
 				Comments.create({
-						comments,UserId,RecipeId
+						comments,UserId,RecipeId,username
 				})
 				.then(comment => {
 						res.status(200).json({msg:"Successfully created", data:comment})
@@ -41,7 +41,8 @@ exports.getRecipeComment = (req, res, next) => {
 				RecipeId
 			},
 			include: [{
-					all: true
+					all: true,
+					attributes
 			}]
 	})
 			.then((comment) => {

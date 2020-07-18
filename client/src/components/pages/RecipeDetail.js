@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane} from '@fortawesome/free-solid-svg-icons';
-// import Moment from "react-moment";
+import Moment from "react-moment";
 // import ReacthtmlParser from "react-html-parser";
 import { Spinner, Container } from "reactstrap";
 
@@ -30,10 +30,10 @@ class RecipeDetail extends Component {
 		this.props.getSingleRecipe(recipeId);
 	}
 	submit(e) {
-		const { comment,user } = this.state;
-		const { userId } = this.props;
+		const { comment } = this.state;
+		const { user } = this.props;
 		const id = +this.props.match.params.id;
-		this.props.addComment({ comments: comment, RecipeId: id, UserId: user.id })
+		this.props.addComment({ comments: comment, RecipeId: id, UserId: user.id, username: user.firstname})
 		this.setState({
 			comment: ""
 		})
@@ -48,9 +48,8 @@ class RecipeDetail extends Component {
 		})
 	};
 	render() {
-		const { recipe, isAuth } = this.props;
-		const { comment,user } = this.state;
-		console.log(user,)
+		const { recipe, isAuth ,user} = this.props;
+		const { comment } = this.state;
 		return (
 			<>
 			<Container>
@@ -66,37 +65,33 @@ class RecipeDetail extends Component {
 									<div className="detail">
 										<div className="recipe-image">
 											<img src={`http://localhost:5000/${recipe && recipe.imageurl}`} alt="recipe" />
-											{/* <p>By: {recipe && recipe.User.firstname} </p> */}
+											<p>By: {recipe && recipe.User.firstname} </p><small>Created: <Moment fromNow>{recipe && recipe.updatedAt}</Moment></small>
 										</div>
 										<div className="text">
-											{/* <div className="up"> */}
 												<div className="description">
 													<h4>Description</h4>
-													{/* <p>{recipe && recipe.steps}</p> */}
 													<p>{recipe && recipe.description}</p>
 												</div>
 												<div className="ingredients">
 													<h4>Ingredients</h4>
 													<p>{recipe && recipe.ingredients}</p>
 												</div>
-											{/* </div> */}
 											<div className="steps">
 												<h4>Method</h4>
 												<p>{recipe && recipe.steps}</p>
 											</div>
 											{/* {recipe && ReactHtmlParser(recipe.description)} */}
 											{/* <h5>Created <Moment fromNow>{recipe && recipe.updatedAt}</Moment></h5> */}
-											{/* {isAuth ?
+											{isAuth ?
 												<div className="actions">
 													<i className="fas fa-bookmark"></i>
 													<i className="far fa-heart">12</i>
-													<i className="far fa-comment-alt">123</i>
+													<i className="far fa-comment-alt">{recipe && recipe.comments.length}</i>
 												</div>
 												:
 												""
-											} */}
+											}
 										</div>
-
 									</div>
 										<div className="comment">
 										<div className="act">
@@ -105,7 +100,9 @@ class RecipeDetail extends Component {
 											<div className="activity-logs">
 												{recipe && recipe.comments.map(comment => (
 													<div className="activity-card" key={comment.id}>
+														<h5>{comment.username}</h5>
 														<p>{comment.comments}</p>
+														<small><Moment fromNow>{comment.updatedAt}</Moment></small>
 													</div>
 												))}
 											</div>

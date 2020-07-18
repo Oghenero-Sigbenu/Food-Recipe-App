@@ -14,17 +14,17 @@ const initialState = {
     user: JSON.parse(localStorage.getItem('user')),
     isLoading: false,
 }
-
 const reducer = (state = initialState, action) => {
     const { type, payload } = action;
     switch (type) {
         case AUTH_START:
-        case LOAD_AUTH_USER_START:
-            return {
-                ...state,
-                isLoading: payload.isLoading
-            };
-        case AUTH_SUCCESS:
+            case LOAD_AUTH_USER_START:
+                return {
+                    ...state,
+                    isLoading: payload.isLoading
+                };
+                case AUTH_SUCCESS:
+                    console.log(initialState)
             return {
                 ...state,
                 token: payload.token,
