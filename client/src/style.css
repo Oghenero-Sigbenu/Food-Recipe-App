@@ -15,7 +15,11 @@
     /* background-color: rgb(238, 236, 234); */
 }
 .recipe-list{
-  position: relative;
+  /* position: relative; */
+  background-image: url("../src/files/orange.png"),url("../src/files/Red-Apple.png"), url("../src/files/tomato.png");
+  background-position: left bottom,center bottom, right top;
+ background-repeat: no-repeat, no-repeat; 
+ background-size: 90px 100px;
 }
 .recipe-image{
     width: 300px;
@@ -124,6 +128,11 @@ button{
 .recipes{
     width: 100%;
     margin: 60px auto;
+      /* position: relative; */
+  background-image: url("../src/files/orange.png"),url("../src/files/Red-Apple.png"), url("../src/files/tomato.png");
+  background-position: left bottom,center bottom, right top;
+ background-repeat: no-repeat, no-repeat; 
+ background-size: 90px 100px;
 }
 .send {
     padding: 5px;
@@ -197,7 +206,7 @@ button{
   .comment{
     width: 100%;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
   }
   .act{
     position: relative;
@@ -317,6 +326,9 @@ img{
 }
 .act{
   width: 98%;
+}
+.recipes{
+  background-size: 50px 50px;
 }
   }
 /* 

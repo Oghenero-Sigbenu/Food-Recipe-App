@@ -40,14 +40,14 @@ class Footer extends Component {
     const { msg, isCreated } = this.props;
     return (
       <>
-        <div className="footer">
+        {/* <div className="footer">
           <h4>Foody Newsletters </h4>
           {isCreated ? <Alert classStyle="green" msg={msg} /> : ""}
           <div className="cs-btn">
             <input type="email" name="email" value={email} onChange={this.getValues} />
             <button className="c-btn" onClick={this.submit}>Subscribe Now</button>
           </div>
-        </div>
+        </div> */}
         <footer>
           <ul>
             <li>

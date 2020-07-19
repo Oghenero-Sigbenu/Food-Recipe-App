@@ -4,7 +4,7 @@ import { Spinner } from "reactstrap";
 import Footer from "../common/Footer/Footer";
 import RecipeCards from "../common/RecipeCards/RecipeCards";
 import { getRecipe } from "../../store/action/recipe";
-
+import "../../style.css";
 class Recipes extends Component {
 	constructor(props) {
 		super(props);
