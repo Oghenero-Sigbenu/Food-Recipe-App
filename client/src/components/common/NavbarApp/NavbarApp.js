@@ -91,7 +91,7 @@ componentDidMount() {
 }
 
 const mapStateToProps = state => ({
-	isAuth: state.auth.token !== null,
+	isAuth: state.auth.isLoggedIn,
 	token: state.auth.token ,
 	user: state.auth.user
   

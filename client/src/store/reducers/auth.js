@@ -10,7 +10,7 @@ const checkToken = localStorage.getItem('token') ? true : false;
 
 const initialState = {
     token,
-    isLoggedIn: checkToken,
+    isLoggedIn:false,
     user: JSON.parse(localStorage.getItem('user')),
     isLoading: false,
 }
@@ -23,18 +23,18 @@ const reducer = (state = initialState, action) => {
                     ...state,
                     isLoading: payload.isLoading
                 };
-                case AUTH_SUCCESS:
-                    console.log(initialState)
-            return {
-                ...state,
-                token: payload.token,
-                user: payload.user,
-                userId: payload.userId,
-                isLoading: false,
-                isLoggedIn: true,
-                error: null,
-                msg: payload.msg
-            };
+            case AUTH_SUCCESS:
+                console.log(initialState)
+        return {
+            ...state,
+            token: payload.token,
+            user: payload.user,
+            userId: payload.userId,
+            isLoading: false,
+            isLoggedIn: true,
+            error: null,
+            msg: payload.msg
+        };
         case LOGINFAILED:
             return {
                 ...state,
