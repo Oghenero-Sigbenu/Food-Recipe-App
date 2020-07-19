@@ -37,11 +37,11 @@ app.use("/api/v1/like", likeRoutes);
 app.use("/api/v1/comment", commentRoutes);
 app.use("/api/v1/email", emailRoutes);
 
-app.get("/", function(req, res) {
-    res.send({
-        message: "Hello"
-    })
-})
+// app.get("/", function(req, res) {
+//     res.send({
+//         message: "Hello"
+//     })
+// })
 // if(process.env.NODE_ENV === "production"){
 //     app.use(express.static("client/build"));
 
