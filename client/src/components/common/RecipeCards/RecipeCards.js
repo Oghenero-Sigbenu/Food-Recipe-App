@@ -14,7 +14,7 @@ const RecipeCards = ({ recipes, isAuth, user, click }) => {
 	// const divStyle = {display: "flex", width: "100%", background_color: "danger"}
 	return (
 		<div className="all-recipes">
-			{recipes.map(recipe => (
+			{/* {recipes && recipes.map(recipe => (
 				<div className="recipe-cards" key={recipe.id}>
 					<img src={`http://localhost:5000/${recipe.imageurl}`} alt="food" className="card-image"></img>
 					<div className="details">
@@ -22,22 +22,22 @@ const RecipeCards = ({ recipes, isAuth, user, click }) => {
 						<div className="recipe-description">
 							{striptags(recipe.description).slice(0, 25) + "..."}
 							<NavLink to={`detail/` + recipe.id}>Read More</NavLink></div>
+					</div> */}
 						{/* <h6>By: {recipe.User.firstname}</h6> */}
-					</div>
-					{isAuth ?
-						<>
+					{/* {isAuth ? */}
+						{/* <>
 							<div className="recipe-actions">
-								<hr></hr>
+								<hr></hr> */}
 								{/* <i class="far fa-bookmark"></i>  */}
 								{/* <button><i className="fas fa-bookmark"></i></button> */}
 								{/* <button onClick={click}><i className="far fa-heart">12</i></button> */}
-								<NavLink to={`detail/` + recipe.id}>{recipe.comments.length} <i className="far fa-comment-alt"></i></NavLink>
+								{/* <NavLink to={`detail/` + recipe.id}>{recipe.comments.length} <i className="far fa-comment-alt"></i></NavLink>
 							</div>
 						</>
 						: ""
-					}
-				</div>
-			))}
+					} */}
+				{/* </div>
+			))} */}
 
 		</div>
 
