@@ -25,14 +25,13 @@ export const authFailed = msg => ({
 });
 
 export const auth = (authData) => {
+  console.log(authData)
   return (dispatch) => {
     dispatch(authStart())
     axios.post("/user/", authData)
       .then(res => {
-        console.log(res.data)
         console.log(res)
         const { token, user } = res.data;
-        console.log(token,user,"authc")
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));
         dispatch(authSuccess(user, token))

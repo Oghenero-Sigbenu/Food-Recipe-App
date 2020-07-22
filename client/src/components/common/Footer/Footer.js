@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 
 import "./Footer.css";
-import Alert from "../Alert";
+// import Alert from "../Alert";
 import { addEmail } from "../../../store/action/email";
 import { reg } from '../Validation';
 
@@ -36,8 +36,8 @@ class Footer extends Component {
     })
   };
   render() {
-    const { email } = this.state;
-    const { msg, isCreated } = this.props;
+    // const { email } = this.state;
+    // csonst { msg, isCreated } = this.props;
     return (
       <>
         {/* <div className="footer">

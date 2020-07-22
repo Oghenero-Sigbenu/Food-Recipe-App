@@ -31,7 +31,9 @@ class Recipes extends Component {
 							<RecipeCards recipes={this.props.recipes} click={this.like} isAuth={this.props.isAuth} user={this.props.userId} />
 						)}
 				</div>
+				<div className="foot">
 				<Footer />
+				</div>
 			</div>
 
 		);

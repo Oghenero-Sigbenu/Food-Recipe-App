@@ -45,7 +45,7 @@ export const getRecipeStart = () => {
 export const getRecipe = () => {
     return dispatch => {
         dispatch(loading())
-            axios.get("/recipe/all")
+            axios.get("/recipe/")
                 .then(res => {
                     dispatch(getRecipeSuccess(res.data))
                     })
@@ -90,7 +90,7 @@ export const addRecipe = recipeData => {
         formData.append("UserId", recipeData.UserId);
     // }      
     console.log(formData)
-        axios.post("recipe/post", formData, config)
+        axios.post("/recipe/post", formData, config)
             .then(res => {
                 dispatch(addRecipeSuccess(res.data))
             })
@@ -136,7 +136,7 @@ export const getUserRecipes = () => {
 		if (token) {
 			config.headers["x-access-token"] = token;
         }
-        axios.get("recipe/user/recipes", config)
+        axios.get("/recipe/user/recipes", config)
         .then(res => {
             dispatch(getUserRecipeSuccess(res.data))
         })
@@ -161,7 +161,7 @@ export const editRecipeInit = recipeId => {
     if(token) {
         config.headers["x-access-token"] = token;
     }
-    axios.get(`recipe/edit/${recipeId}`, config)                                                                                                              
+    axios.get(`/recipe/edit/${recipeId}`, config)                                                                                                              
     .then(res => {
         // eslint-disable-next-line
         if(res.data.userId !== userId) {
@@ -201,7 +201,7 @@ export const editRecipe = (recipeData) => {
         formData.append("ingredients", recipeData.ingredients);
         formData.append("imageurl", recipeData.imageurl);
     }
-    axios.put(`recipe/edit/${recipeId}`, formData, config)
+    axios.put(`/recipe/edit/${recipeId}`, formData, config)
     .then(res => {
         return dispatch({type: types.EDIT_RECIPE_SUCCESS});
     })
@@ -209,6 +209,5 @@ export const editRecipe = (recipeData) => {
         dispatch(editRecipeDone());
     })
     .catch(err => dispatch(errorOccured(err.response.data)));
-
     }
 }

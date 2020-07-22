@@ -32,7 +32,6 @@ componentDidMount() {
 }
     render() {
 		const {user,isAuth, token} = this.props;
-		console.log(user, isAuth,"yes",token)
 		return (
 			<div className="new-nav">
 				<Navbar expand="md" className="mb-5 newN nav">
@@ -64,7 +63,7 @@ componentDidMount() {
 									{isAuth ? (
                   <UncontrolledDropdown nav inNavbar>
                     <DropdownToggle nav caret>
-                      {this.props.user && this.props.user.username}
+                      {user && user.username}
                     </DropdownToggle>
                     <DropdownMenu right>
                       <DropdownItem>
@@ -91,7 +90,7 @@ componentDidMount() {
 }
 
 const mapStateToProps = state => ({
-	isAuth: state.auth.isLoggedIn,
+	isAuth: state.auth.token,
 	token: state.auth.token ,
 	user: state.auth.user
   
