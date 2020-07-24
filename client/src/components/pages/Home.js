@@ -104,7 +104,8 @@ class Home extends Component {
   render() {
     const rendImage = this.renderSlide();
     setTimeout(this.setNextImage, 10000);
-    const { recipes, isAuth, userId, isLoading } = this.props;
+    const { recipes, isAuth, user, isLoading } = this.props;
+    console.log(user)
     return (
       <div className="home">
         <div className="banner">
@@ -124,10 +125,9 @@ class Home extends Component {
           </div>
         ) : (
             <div className="recipes">
-              <RecipeCards recipes={recipes} isAuth={isAuth} user={userId} />
+              <RecipeCards recipes={recipes} isAuth={isAuth} user={user} />
             </div>
           )}
-
           <Footer />
       </div>
     )
@@ -137,8 +137,8 @@ class Home extends Component {
 const mapStateToProps = state => ({
   recipes: state.recipe.recipes,
   isLoading: state.recipe.isLoading,
-  isAuth: state.auth.token !== null,
-  userId: state.auth.userId
+  isAuth: state.auth.token,
+  user: state.auth.user
 
 });
 

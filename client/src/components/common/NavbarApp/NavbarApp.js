@@ -21,7 +21,6 @@ class AppNavbar extends Component {
 	state = {
 		    isOpen: false
 	        };
-
 	        toggle = () => {
 		        this.setState(prevState => ({
 			        isOpen: !prevState.isOpen
@@ -30,8 +29,9 @@ class AppNavbar extends Component {
 componentDidMount() {
 
 }
+
     render() {
-		const {user,isAuth, token} = this.props;
+		const {user,token} = this.props;
 		return (
 			<div className="new-nav">
 				<Navbar expand="md" className="mb-5 newN nav">
@@ -51,7 +51,7 @@ componentDidMount() {
                                        Recipes
                                     </NavLink>
                                     </NavItem>
-                                    {isAuth ?
+                                    {token ?
                                     <NavItem>
 									<NavLink to="/add" className="nav-link">
 										Add Recipe
@@ -60,7 +60,7 @@ componentDidMount() {
 									: ""
 							         } 
 							        {/* <NavItem> */}
-									{isAuth ? (
+									{token ? (
                   <UncontrolledDropdown nav inNavbar>
                     <DropdownToggle nav caret>
                       {user && user.username}
@@ -88,13 +88,13 @@ componentDidMount() {
 		);
 	}
 }
-
-const mapStateToProps = state => ({
-	isAuth: state.auth.token,
-	token: state.auth.token ,
-	user: state.auth.user
   
-  });
+const mapStateToProps = (state) => {
+	const { isAuth,token,user } = state.auth;
+	return {
+		isAuth,token,user
+	}
+  }
   
   export default connect(
 		mapStateToProps,

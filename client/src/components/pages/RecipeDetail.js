@@ -56,7 +56,7 @@ class RecipeDetail extends Component {
 	render() {
 		const { recipe, isAuth} = this.props;
 		const { comment } = this.state;
-		console.log(recipe)
+		console.log(recipe.comments)
 		return (
 			<>
 			<Container>

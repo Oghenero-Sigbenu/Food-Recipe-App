@@ -8,11 +8,10 @@ export const authStart = () => ({
   }
 });
 
-export const authSuccess = (token, userId, user, msg) => ({
+export const authSuccess = (token, user, msg) => ({
   type: AUTH_SUCCESS,
   payload: {
     token,
-    userId,
     user,
     msg
   }
@@ -25,16 +24,15 @@ export const authFailed = msg => ({
 });
 
 export const auth = (authData) => {
-  console.log(authData)
   return (dispatch) => {
     dispatch(authStart())
     axios.post("/user/", authData)
       .then(res => {
-        console.log(res)
         const { token, user } = res.data;
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));
-        dispatch(authSuccess(user, token))
+        dispatch(authSuccess(token, user))
+        // this.props.history.push("/")
       })
       .catch(err => dispatch(authFailed(err)));
   }
@@ -55,9 +53,8 @@ export const login = (authData) => {
       .then(res => {
         const { user, token } = res.data;
         localStorage.setItem("token", token);
-        console.log(token,user,"login")
         localStorage.setItem("user", JSON.stringify(user));
-        dispatch(authSuccess(user, token))
+        dispatch(authSuccess(token, user))
       })
       .catch(err => {
         console.log(err.response)

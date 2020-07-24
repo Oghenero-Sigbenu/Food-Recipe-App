@@ -52,7 +52,8 @@ const reducer = (state = initialState, action) => {
                 userId: null,
                 user: null,
                 isLoading: false,
-                error: action.error
+                error: action.error,  
+                isLoggedIn: false
             }
         case TOGGLE_AUTH:
             return {

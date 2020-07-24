@@ -35,5 +35,5 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "proxy": "https://neronode.herokuapp.com/"
+  "proxy": "https://afternoon-taiga-13473.herokuapp.com"
 }

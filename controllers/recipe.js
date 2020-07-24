@@ -1,20 +1,20 @@
-const Recipes = require('../models/recipe');//initates creation of table in the database 
+const Recipe = require('../models/recipe');//initates creation of table in the database 
 const User = require("../models/user");
+const httpStatus = require("../util/httpStatus");
+const Like = require("../models/like");
 
 //get all recipes
 exports.getAllRecipes = (req, res, next) => {
-    Recipes.findAll({
+    Recipe.findAll({
         include: [
 			{
 				all: true,
 				attributes: { exclude: ["password", "createdAt", "updatedAt"] }
-			}
-		]
-    }  
-
-    )
+			}]
+    })
         .then(recipe => {
             res.json(recipe)
+            // console.log(recipe)
         })
         .catch(err => res.json({ msg: failed, error: err }))
         };
@@ -22,7 +22,7 @@ exports.getAllRecipes = (req, res, next) => {
 //get recipe by Id
 exports.getRecipeById = (req, res, next) => {
     const recipeId = req.params.id;
-    Recipes.findOne({
+    Recipe.findOne({
         where:{
             id: recipeId
         },
@@ -35,7 +35,7 @@ exports.getRecipeById = (req, res, next) => {
     })
     .then(recipe => {
         if(!recipe) {
-            res.status(400).json({success: false, message: "Recipe not found"})
+            res.status(httpStatus.NOT_FOUND).json({success: false, message: "Recipe not found"})
         }
         else{
             res.json(recipe)
@@ -46,7 +46,7 @@ exports.getRecipeById = (req, res, next) => {
 
 exports.getUserRecipes = (req,res,next)=>{
 	const userId = req.userId;
-    Recipes.findAll({
+    Recipe.findAll({
         where:{
             userId
 		},
@@ -78,7 +78,7 @@ exports.postAddRecipe = (req, res, next) => {
     // else {
        User.findByPk(UserId)
             .then(user => {
-                Recipes.create({ title, description, steps, ingredients, imageurl, UserId })
+                Recipe.create({ title, description, steps, ingredients, imageurl, UserId })
                 .then(recipe => {
                     res.status(200).json({msg: "succssfully created ",data:recipe})
                 })
@@ -86,13 +86,12 @@ exports.postAddRecipe = (req, res, next) => {
                  })
             .catch(err => res.json({ msg: err.message || "User not found" }))
                 }
-
                 // }
 
 //delete a single recipe by id
 exports.deleteRecipe = (req, res, next) => {
     const recipeId = req.params.id;
-    Recipes.findPk(recipeId)
+    Recipe.findPk(recipeId)
     .then(recipe => {
         if(recipe.userId !== req.userId) {
             res.status(401).json({msg: 'You cannot perform this action'})
@@ -118,7 +117,7 @@ exports.updateRecipe = (req, res, next) => {
     if (req.file) {
         imageurl = req.file.path;
     }
-    Recipes.findByPk(recipeId)
+    Recipe.findByPk(recipeId)
         .then(recipe => {
             if(recipe.userId !== userId){
                 res.json({msg: "Recipe not created by you"})
@@ -138,3 +137,36 @@ exports.updateRecipe = (req, res, next) => {
 		);
 };
 
+exports.postLikeRecipe = (req, res, next) => {
+    const { userId, recipeId } = req.body;
+    Recipe.findByPk(recipeId)
+        .then(async (recipe) => {
+            if (!recipe) {
+                return res.status(httpStatus.NOT_FOUND)
+                    .json({ message: "recipe does not exist" })
+            }
+
+            try {
+                // if the user aready liked the recipe
+                // decrement the likes count
+                // else, increment it
+                const liked = await Like.findOne({ UserId: userId, RecipeId: recipeId });
+                if (liked) {
+                    // unlike
+                    recipe.likes = recipe.likes - 1;
+                    await recipe.save();
+                    await Like.destroy({ UserId: userId, RecipeId: recipeId });
+                    return res.json({ message: `${recipe.title} liked successfully`});
+                }
+
+                // create like record
+                const like = await Like.create({ UserId: userId, RecipeId: recipeId, likes: 1 });
+                // increment like count
+                recipe.likes = recipe.likes + 1;
+                recipe = await recipe.save();
+                res.json({ message: "recipe liked succesfully", data: recipe })
+            } catch (error) {
+                return next(error);
+            }
+        }).catch(next)
+}

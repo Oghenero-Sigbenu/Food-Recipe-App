@@ -10,11 +10,10 @@ import striptags from 'striptags';
 
 import "./RecipeCards.css"
 const RecipeCards = ({ recipes, isAuth, user, click }) => {
-
 	// const divStyle = {display: "flex", width: "100%", background_color: "danger"}
 	return (
 		<div className="all-recipes">
-			{recipes.map(recipe => (
+			{recipes && recipes.map(recipe => (
 				<div className="recipe-cards" key={recipe.id}>
 					<img src={`http://localhost:5000/${recipe.imageurl}`} alt="food" className="card-image"></img>
 					<div className="details">

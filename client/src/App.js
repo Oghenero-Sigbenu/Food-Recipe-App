@@ -17,10 +17,7 @@ import { auth } from "./store/action/auth"
 export class App extends Component {
 
   componentDidMount = () => {
-    // this.props.auth();
-    if(this.props.isAuth) {
-      // this.props.loadAuthUser();
-    }
+console.log(this.props.user, "app")
   }
   render() {
     let routes = (
@@ -49,7 +46,7 @@ export class App extends Component {
        }
     return (
       <div className="App">
-          <NavbarApp/>
+          <NavbarApp />
           {routes}  
           {/* <Footer/> */}
       </div>

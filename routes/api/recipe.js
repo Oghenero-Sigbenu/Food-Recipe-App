@@ -10,7 +10,7 @@ const authenticate = require("../../middleware/auth")
 const route = express.Router();
 
 
-route.get("/all", recipeControllers.getAllRecipes)
+route.get("/", recipeControllers.getAllRecipes)
 route.get("/:id", recipeControllers.getRecipeById)
 route.get("/user/recipes",authenticate, recipeControllers.getUserRecipes)
 route.get("/delete/:id",authenticate, recipeControllers.deleteRecipe)

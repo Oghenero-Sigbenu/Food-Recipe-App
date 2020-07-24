@@ -47,6 +47,7 @@ export const getRecipe = () => {
         dispatch(loading())
             axios.get("/recipe/")
                 .then(res => {
+                    console.log(res.data)
                     dispatch(getRecipeSuccess(res.data))
                     })
                     .then(() => {

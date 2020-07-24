@@ -88,7 +88,6 @@ class Register extends Component {
 
 const mapStateToProps = (state) => {
   const { isLoggedIn, isLoading,token,msg } = state.auth;
-  console.log(token, isLoading, msg, isLoggedIn)
   return {
     isLoggedIn,
     isLoading,
@@ -96,4 +95,5 @@ const mapStateToProps = (state) => {
     msg
   }
 }
+
 export default connect(mapStateToProps, { auth, })(Register);
