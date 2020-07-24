@@ -37,13 +37,13 @@ app.use("/api/v1/comment", commentRoutes);
 app.use("/api/v1/email", emailRoutes);
 
 
-// if(process.env.NODE_ENV === "production"){
-//     app.use(express.static("client/build"));
+if(process.env.NODE_ENV === "production"){
+    app.use(express.static("client/build"));
 
-//     app.get("*", (req, res) => {
-//         res.sendFile(path.resolve(__dirname,"client","build","index.html"))
-//     })
-// }
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname,"client","build","index.html"))
+    })
+}
 
 app.use('*', (req, res, next) => {
     res.json({ message: 'Invalid url'});
@@ -52,11 +52,11 @@ app.use('*', (req, res, next) => {
 // develoment error handler
 app.use((err, req, res, next) => {
     if (process.env.NODE_ENV == "production") {
-        app.use(express.static("client/build"));
+        // app.use(express.static("client/build"));
 
-        app.get("*", (req, res) => {
-            res.sendFile(path.resolve(__dirname,"client","build","index.html"))
-        })
+        // app.get("*", (req, res) => {
+        //     res.sendFile(path.resolve(__dirname,"client","build","index.html"))
+        // })
         return next(err)
     }
     return res.json({ message: err.message || "an error occured", error: err });
